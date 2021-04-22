@@ -16,16 +16,16 @@ public class Artists implements Serializable {
     @Column(nullable = false, unique = true)
     private String website;
     @Column(unique = true)
-    private int number;
+    private long number;
     private String about;
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
     private String photo;
 
 
     public Artists() {
     }
 
-    public Artists(String name, String email, String website, int number, String about, String photo) {
+    public Artists(String name, String email, String website, long number, String about, String photo) {
         this.name = name;
         this.email = email;
         this.website = website;
@@ -66,11 +66,11 @@ public class Artists implements Serializable {
         this.website = website;
     }
 
-    public int getNumber() {
+    public long getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(long number) {
         this.number = number;
     }
 

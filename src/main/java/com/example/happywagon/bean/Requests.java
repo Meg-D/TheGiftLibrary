@@ -12,12 +12,14 @@ public class Requests implements Serializable {
     private Integer request_id;
     @Column(nullable = false)
     private String status;
-    private Integer artist_id; //foreign key
+
+    @OneToOne
+    private Artists artist_id; //foreign key
 
     public Requests() {
     }
 
-    public Requests(String status, Integer artist_id) {
+    public Requests(String status, Artists artist_id) {
         this.status = status;
         this.artist_id = artist_id;
     }
@@ -38,11 +40,11 @@ public class Requests implements Serializable {
         this.status = status;
     }
 
-    public Integer getArtist_id() {
+    public Artists getArtist_id() {
         return artist_id;
     }
 
-    public void setArtist_id(Integer artist_id) {
+    public void setArtist_id(Artists artist_id) {
         this.artist_id = artist_id;
     }
 }

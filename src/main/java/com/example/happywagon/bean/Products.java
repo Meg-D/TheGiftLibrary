@@ -17,14 +17,22 @@ public class Products implements Serializable {
     @Column
     private String price;
 
-    public Products(){
+    @ManyToOne
+    private Categories cate_id;
+
+    @ManyToOne
+    private Artists art_id;
+
+    public Products() {
     }
 
-    public Products(Integer product_id, String name, String description, String price) {
+    public Products(Integer product_id, String name, String description, String price, Categories cate_id, Artists art_id) {
         this.product_id = product_id;
         this.name = name;
         this.description = description;
         this.price = price;
+        this.cate_id = cate_id;
+        this.art_id = art_id;
     }
 
     public Integer getProduct_id() {
@@ -57,5 +65,21 @@ public class Products implements Serializable {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public Categories getCate_id() {
+        return cate_id;
+    }
+
+    public void setCate_id(Categories cate_id) {
+        this.cate_id = cate_id;
+    }
+
+    public Artists getArt_id() {
+        return art_id;
+    }
+
+    public void setArt_id(Artists art_id) {
+        this.art_id = art_id;
     }
 }
