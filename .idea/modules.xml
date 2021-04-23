@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/happywagon.iml" filepath="$PROJECT_DIR$/happywagon.iml" />
       <module fileurl="file://$PROJECT_DIR$/spepro.iml" filepath="$PROJECT_DIR$/spepro.iml" />
     </modules>
   </component>

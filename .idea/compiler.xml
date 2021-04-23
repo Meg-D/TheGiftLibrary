@@ -6,15 +6,17 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="spepro" />
+        <module name="happywagon" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="happywagon" target="1.8" />
       <module name="spepro" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="happywagon" options="-parameters" />
       <module name="spepro" options="-parameters" />
     </option>
   </component>

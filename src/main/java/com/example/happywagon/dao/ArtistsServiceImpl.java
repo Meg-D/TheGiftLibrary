@@ -23,8 +23,10 @@ public class ArtistsServiceImpl implements ArtistsService {
     }
 
     @Override
-    public Artists getArtist(int artistId){
-        return artistDao.getOne(artistId);
+    public Artists getArtist(Integer artistId){
+        Artists entity = artistDao.getOne(artistId);
+        System.out.println(entity);
+        return entity;
     }
 
     @Override
@@ -40,8 +42,8 @@ public class ArtistsServiceImpl implements ArtistsService {
     }
 
     @Override
-    public void deleteArtist(int parseLong){
-        Artists entity = artistDao.getOne(parseLong);
+    public void deleteArtist(int artistId){
+        Artists entity = artistDao.getOne(artistId);
         artistDao.delete(entity);
     }
 }
