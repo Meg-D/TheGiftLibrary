@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class MyController {
@@ -24,7 +25,7 @@ public class MyController {
 
    //get one artist
     @GetMapping("/artists/{artistId}")
-    public Artists getArtist(@PathVariable String artistId){
+    public Optional<Artists> getArtist(@PathVariable String artistId){
         return this.artistService.getArtist(Integer.parseInt(artistId));
     }
 
@@ -37,7 +38,8 @@ public class MyController {
     //update artist
     @PutMapping("/artists")
     public Artists updateArtist(@RequestBody Artists artist){
-        return this.artistService.updateArtist(artist);
+            return this.artistService.updateArtist(artist);
+
     }
 
     //delete artist

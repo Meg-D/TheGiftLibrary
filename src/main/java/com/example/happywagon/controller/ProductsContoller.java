@@ -44,7 +44,7 @@ public class ProductsContoller {
     }
 
     //delete product
-    @DeleteMapping("/product/{productId}")
+    @DeleteMapping("/products/{productId}")
     public ResponseEntity<HttpStatus> deleteProduct(@PathVariable String productId){
         try{
             this.productService.deleteProduct(Integer.parseInt(productId));

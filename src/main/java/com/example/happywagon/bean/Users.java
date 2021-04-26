@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 @Entity
 @Table
-public class Authentication implements Serializable {
+public class Users implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer user_id;
@@ -17,12 +17,13 @@ public class Authentication implements Serializable {
     private String password;
 
     @Column(nullable = false)
-    private String type;
+    private Integer type;
+    //1-admin 2-artist
 
-    public Authentication(){
+    public Users(){
     }
 
-    public Authentication(Integer user_id, String username, String password, String type) {
+    public Users(Integer user_id, String username, String password, Integer type) {
         this.user_id = user_id;
         this.username = username;
         this.password = password;
@@ -54,11 +55,11 @@ public class Authentication implements Serializable {
         this.password = password;
     }
 
-    public String getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Integer type) {
         this.type = type;
     }
 }
