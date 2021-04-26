@@ -3,16 +3,17 @@ package com.example.happywagon.dao;
 import com.example.happywagon.bean.Categories;
 import com.example.happywagon.services.CategoriesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CategoriesServiceImpl implements CategoriesService {
 
     @Autowired
     private CategoryDao categoryDao;
 
     public CategoriesServiceImpl(){
-
     }
     @Override
     public List<Categories> getCategories() {
