@@ -1,5 +1,6 @@
 package com.example.happywagon.controller;
 
+import com.example.happywagon.JSONentity.Product;
 import com.example.happywagon.bean.Products;
 import com.example.happywagon.services.ProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class ProductsContoller {
 
     //add product
     @PostMapping(path="/products",consumes = "application/JSON")
-    public Products addArtist(@RequestBody Products product){
+    public Products addArtist(@RequestBody Product product){
         return this.productService.addProduct(product);
     }
 

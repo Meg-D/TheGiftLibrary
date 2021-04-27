@@ -1,6 +1,7 @@
-package com.example.happywagon.dao;
+package com.example.happywagon.services.Impl;
 
 import com.example.happywagon.bean.Requests;
+import com.example.happywagon.dao.RequestDao;
 import com.example.happywagon.services.RequestsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

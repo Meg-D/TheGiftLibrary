@@ -1,6 +1,12 @@
-package com.example.happywagon.dao;
+package com.example.happywagon.services.Impl;
 
+import com.example.happywagon.JSONentity.Product;
+import com.example.happywagon.bean.Artists;
+import com.example.happywagon.bean.Categories;
 import com.example.happywagon.bean.Products;
+import com.example.happywagon.dao.ArtistDao;
+import com.example.happywagon.dao.CategoryDao;
+import com.example.happywagon.dao.ProductDao;
 import com.example.happywagon.services.ProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,12 +20,21 @@ public class ProductsServiceImpl implements ProductsService {
     @Autowired
     private ProductDao productDao;
 
+    @Autowired
+    private ArtistDao artistDao;
+
+    @Autowired
+    private CategoryDao categoryDao;
+
     public ProductsServiceImpl(){}
 
     @Override
-    public Products addProduct(Products product) {
-        productDao.save(product);
-        return product;
+    public Products addProduct(Product product) {
+        Artists ar = artistDao.findById(product.getArt_id()).get();
+        Categories cat = categoryDao.findById(product.getCate_id()).get();
+        Products products = new Products(product.getName(),product.getDescription(), product.getPrice(),cat,ar );
+        productDao.save(products);
+        return products;
     }
 
     @Override

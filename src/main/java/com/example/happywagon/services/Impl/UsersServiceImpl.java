@@ -1,4 +1,4 @@
-package com.example.happywagon.dao;
+package com.example.happywagon.services.Impl;
 
 import org.springframework.stereotype.Service;
 

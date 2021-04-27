@@ -10,17 +10,17 @@ import org.springframework.context.annotation.Configuration;
 
 @SpringBootApplication
 public class HappywagonApplication {
-    static UserDao userDao;
+   // static UserDao userDao;
     public static void main(String[] args) {
         SpringApplication.run(HappywagonApplication.class, args);
 
 
-        Users admin = new Users();
-        admin.setUsername("admin");
-        admin.setPassword("password");
-        admin.setType(1);
+   //     Users admin = new Users();
+     //   admin.setUsername("admin");
+    //    admin.setPassword("password");
+    //    admin.setType(1);
 
-        userDao.save(admin);
+     //   userDao.save(admin);
     }
 
 
