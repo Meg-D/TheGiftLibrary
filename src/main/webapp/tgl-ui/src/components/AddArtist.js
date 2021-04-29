@@ -2,6 +2,7 @@ import React, {useEffect , useState} from 'react'
 import {Button, Form, FormGroup, Label, Input, FormText, Container} from 'reactstrap';
 import axios from "axios";
 import base_url from "../api/bootapi";
+import {toast} from 'react-toastify';
 
 const AddArtist=()=>{
     useEffect(() => {
@@ -22,9 +23,11 @@ const AddArtist=()=>{
         axios.post( `${base_url}/artists`,data).then(
         (response)=>{
             console.log(response);
+            toast.success("Artist added!");
 
         },(error)=>{
             console.log(error);
+            toast.error("Something went wrong!")
         }
         )
     };
@@ -97,7 +100,9 @@ const AddArtist=()=>{
 
                 <Container className={"text-center"}>
                     <Button type="submit" color={"success"}>Add Artist</Button>
-                    <Button color={"warning ml-3"}>Clear</Button>
+                    <Button
+                        type="reset"
+                        color={"warning ml-3"}>Clear</Button>
                 </Container>
             </Form>
         </div>
