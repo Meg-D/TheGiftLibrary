@@ -16,16 +16,19 @@ public class CategoriesController {
     public CategoriesService categoryService;
 
     //add category
+    @CrossOrigin(origins="http://localhost:3000")
     @PostMapping(path="/categories",consumes="application/JSON")
     public Categories addCategory(@RequestBody Categories category){ return this.categoryService.addCategory(category);}
 
     //get all the categories
+    @CrossOrigin(origins="http://localhost:3000")
     @GetMapping("/categories")
     public List<Categories> getCategories(){
         return this.categoryService.getCategories();
     }
 
     //delete category
+    @CrossOrigin(origins="http://localhost:3000")
     @DeleteMapping("/categories/{categoryId}")
     public ResponseEntity<HttpStatus> deleteCategory(@PathVariable String categoryId){
         try{
@@ -35,6 +38,15 @@ public class CategoriesController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    //update category
+    @CrossOrigin(origins="http://localhost:3000")
+    @PutMapping("/categories")
+    public Categories updateCategory(@RequestBody Categories category){
+        return this.categoryService.updateCategory(category);
+
+    }
+
 
 
 

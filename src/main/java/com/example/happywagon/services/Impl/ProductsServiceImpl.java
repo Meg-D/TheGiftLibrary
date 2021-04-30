@@ -32,7 +32,7 @@ public class ProductsServiceImpl implements ProductsService {
     public Products addProduct(Product product) {
         Artists ar = artistDao.findById(product.getArt_id()).get();
         Categories cat = categoryDao.findById(product.getCate_id()).get();
-        Products products = new Products(product.getName(),product.getDescription(), product.getPrice(),cat,ar );
+        Products products = new Products(product.getName(),product.getDescription(), product.getPrice(),cat,ar,product.getPhoto());
         productDao.save(products);
         return products;
     }

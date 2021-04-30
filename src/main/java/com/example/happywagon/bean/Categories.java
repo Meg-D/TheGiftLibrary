@@ -14,13 +14,15 @@ public class Categories implements Serializable {
     @Column(nullable = false,unique = false)
     private String name;
     private String about;
+    private String photo;
 
     public Categories() {
     }
 
-    public Categories(String name, String about) {
+    public Categories(String name, String about, String photo) {
         this.name = name;
         this.about = about;
+        this.photo = photo;
     }
 
     public Integer getCategory_id() {
@@ -45,6 +47,14 @@ public class Categories implements Serializable {
 
     public void setAbout(String about) {
         this.about = about;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 }
 

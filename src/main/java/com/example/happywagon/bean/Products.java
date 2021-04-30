@@ -16,6 +16,8 @@ public class Products implements Serializable {
     private String description;
     @Column
     private String price;
+    @Column
+    private String photo;
 
     @ManyToOne
     private Categories cate_id;
@@ -26,13 +28,22 @@ public class Products implements Serializable {
     public Products() {
     }
 
-    public Products( String name, String description, String price, Categories cate_id, Artists art_id) {
+    public Products( String name, String description, String price, Categories cate_id, Artists art_id, String photo) {
 
         this.name = name;
         this.description = description;
         this.price = price;
         this.cate_id = cate_id;
         this.art_id = art_id;
+        this.photo = photo;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public Integer getProduct_id() {

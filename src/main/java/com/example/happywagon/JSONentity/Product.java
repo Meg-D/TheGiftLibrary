@@ -8,6 +8,7 @@ public class Product {
     private String price;
     private Integer cate_id;
     private Integer art_id;
+    private String photo;
 
 
 
@@ -49,5 +50,13 @@ public class Product {
 
     public void setArt_id(Integer art_id) {
         this.art_id = art_id;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 }

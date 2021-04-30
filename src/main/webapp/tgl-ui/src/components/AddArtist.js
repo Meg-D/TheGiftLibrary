@@ -23,11 +23,15 @@ const AddArtist=()=>{
         axios.post( `${base_url}/artists`,data).then(
         (response)=>{
             console.log(response);
-            toast.success("Artist added!");
+            toast.success("Artist added!",{
+                position: "bottom-center",
+            });
 
         },(error)=>{
             console.log(error);
-            toast.error("Something went wrong!")
+            toast.error("Something went wrong!",{
+                position: "bottom-center",
+            })
         }
         )
     };
@@ -90,10 +94,10 @@ const AddArtist=()=>{
                         type={"textarea"}
                         placeholder={"description"}
                         name={"artistdescription"}
-                        id={"description"}
+                        id={"about"}
                         style={{height:150}}
                         onChange={(e)=>{
-                            setArtist({...artist,description: e.target.value})
+                            setArtist({...artist,about: e.target.value})
                         }}
                     />
                </FormGroup>

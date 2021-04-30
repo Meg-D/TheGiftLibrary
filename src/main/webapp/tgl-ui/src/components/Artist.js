@@ -15,6 +15,8 @@ const Artist=({ artist })=>{
             <CardText>{artist.about}</CardText>
             <Container>
                 <Button color={"primary"}>Select</Button>
+                <Button color={"success"}>Update</Button>
+                <Button color={"danger"}>Delete</Button>
             </Container>
         </CardBody>
     </Card>

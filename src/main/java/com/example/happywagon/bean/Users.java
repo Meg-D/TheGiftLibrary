@@ -6,10 +6,8 @@ import java.io.Serializable;
 @Entity
 @Table
 public class Users implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer user_id;
 
+    @Id
     @Column(unique = true,nullable = false)
     private String username;
 
@@ -23,8 +21,7 @@ public class Users implements Serializable {
     public Users(){
     }
 
-    public Users(Integer user_id, String username, String password, Integer type) {
-        this.user_id = user_id;
+    public Users(String username, String password, Integer type) {
         this.username = username;
         this.password = password;
         this.type = type;
@@ -41,14 +38,6 @@ public class Users implements Serializable {
 
     public String getPassword() {
         return password;
-    }
-
-    public Integer getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
     }
 
     public void setPassword(String password) {

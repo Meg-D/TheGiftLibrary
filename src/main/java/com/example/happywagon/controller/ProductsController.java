@@ -12,12 +12,13 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-public class ProductsContoller {
+public class ProductsController {
 
     @Autowired
     public ProductsService productService;
 
     //get all products
+    @CrossOrigin(origins="http://localhost:3000")
     @GetMapping("/products")
     public List<Products> getProducts(){
         // System.out.println("inside controller");
@@ -25,6 +26,7 @@ public class ProductsContoller {
     }
 
     //get all products by category
+    @CrossOrigin(origins="http://localhost:3000")
     @GetMapping("/productsCate/{category_id}")
     public Optional<Products> getProductsByCategory(@PathVariable String category_id){
         // System.out.println("inside controller");
@@ -32,19 +34,22 @@ public class ProductsContoller {
     }
 
     //get all products by artist
+    @CrossOrigin(origins="http://localhost:3000")
     @GetMapping("/productsArt/{artist_id}")
     public Optional<Products> getProductsByArtist(@PathVariable String artist_id){
         // System.out.println("inside controller");
-        return this.productService.getProductsByCategory(Integer.parseInt(artist_id));
+        return this.productService.getProductsByArtist(Integer.parseInt(artist_id));
     }
 
     //add product
+    @CrossOrigin(origins="http://localhost:3000")
     @PostMapping(path="/products",consumes = "application/JSON")
-    public Products addArtist(@RequestBody Product product){
+    public Products addProduct(@RequestBody Product product){
         return this.productService.addProduct(product);
     }
 
     //delete product
+    @CrossOrigin(origins="http://localhost:3000")
     @DeleteMapping("/products/{productId}")
     public ResponseEntity<HttpStatus> deleteProduct(@PathVariable String productId){
         try{

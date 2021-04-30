@@ -32,4 +32,10 @@ public class CategoriesServiceImpl implements CategoriesService {
         Categories entity = categoryDao.getOne(categoryId);
         categoryDao.delete(entity);
     }
+
+    @Override
+    public Categories updateCategory(Categories category) {
+        categoryDao.save(category);
+        return category;
+    }
 }
