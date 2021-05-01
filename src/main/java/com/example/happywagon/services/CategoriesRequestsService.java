@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public interface CategoriesRequestsService {
     public Category_Request addCategoryRequest(Category_Request category_request);
     

@@ -19,7 +19,8 @@ public class Categories implements Serializable {
     public Categories() {
     }
 
-    public Categories(String name, String about, String photo) {
+    public Categories(Integer category_id, String name, String about, String photo) {
+        this.category_id = category_id;
         this.name = name;
         this.about = about;
         this.photo = photo;

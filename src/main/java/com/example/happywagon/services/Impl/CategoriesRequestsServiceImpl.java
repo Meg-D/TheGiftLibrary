@@ -4,9 +4,11 @@ import com.example.happywagon.bean.Category_Request;
 import com.example.happywagon.dao.CategoryRequestDao;
 import com.example.happywagon.services.CategoriesRequestsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CategoriesRequestsServiceImpl implements CategoriesRequestsService {
 
     @Autowired

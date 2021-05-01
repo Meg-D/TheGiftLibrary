@@ -32,7 +32,7 @@ public class ProductsServiceImpl implements ProductsService {
     public Products addProduct(Product product) {
         Artists ar = artistDao.findById(product.getArt_id()).get();
         Categories cat = categoryDao.findById(product.getCate_id()).get();
-        Products products = new Products(product.getName(),product.getDescription(), product.getPrice(),cat,ar,product.getPhoto());
+        Products products = new Products(product.getProduct_id(),product.getName(),product.getDescription(), product.getPrice(),cat,ar,product.getPhoto());
         productDao.save(products);
         return products;
     }
@@ -44,13 +44,15 @@ public class ProductsServiceImpl implements ProductsService {
     }
 
     @Override
-    public Optional<Products> getProductsByCategory(int category_id) {
-        return productDao.findById(category_id);
+    public List<Products> getProductsByCategory(int category_id) {
+        Categories category = categoryDao.findById(category_id).get();
+        return productDao.getProductsByCategory(category);
     }
 
     @Override
-    public Optional<Products> getProductsByArtist(int artist_id) {
-        return productDao.findById(artist_id);
+    public List<Products> getProductsByArtist(int artist_id) {
+        Artists artist = artistDao.findById(artist_id).get();
+        return productDao.getProductsByArtist(artist);
     }
 
     @Override

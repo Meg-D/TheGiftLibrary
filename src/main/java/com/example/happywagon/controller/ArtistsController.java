@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-public class MyController {
+public class ArtistsController {
 
     @Autowired
     public ArtistsService artistService;
@@ -47,6 +47,7 @@ public class MyController {
     }
 
     //delete artist
+    @CrossOrigin(origins="http://localhost:3000")
     @DeleteMapping("/artists/{artistId}")
     public ResponseEntity<HttpStatus> deleteArtist(@PathVariable String artistId){
         try{

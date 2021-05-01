@@ -14,18 +14,15 @@ public class Category_Request  implements Serializable {
     @Column(nullable = false)
     private String name;
     @Column
-    private String photo;
-    @Column
     private String about;
 
     public Category_Request(){
 
     }
 
-    public Category_Request(Integer request_id, String name, String photo, String about) {
+    public Category_Request( Integer request_id, String name, String about) {
         this.request_id = request_id;
         this.name = name;
-        this.photo = photo;
         this.about = about;
     }
 
@@ -45,13 +42,6 @@ public class Category_Request  implements Serializable {
         this.name = name;
     }
 
-    public String getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
 
     public String getAbout() {
         return about;

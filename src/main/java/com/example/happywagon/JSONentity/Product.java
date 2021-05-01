@@ -2,7 +2,7 @@ package com.example.happywagon.JSONentity;
 
 
 public class Product {
-
+    private Integer product_id;
     private String name;
     private String description;
     private String price;
@@ -11,6 +11,13 @@ public class Product {
     private String photo;
 
 
+    public Integer getProduct_id() {
+        return product_id;
+    }
+
+    public void setProduct_id(Integer product_id) {
+        this.product_id = product_id;
+    }
 
     public String getName() {
         return name;

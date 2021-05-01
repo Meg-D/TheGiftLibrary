@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class Users implements Serializable {
 
     @Id
-    @Column(unique = true,nullable = false)
+    @Column(unique = true,nullable = false,length=64)
     private String username;
 
     @Column(nullable = false)
@@ -17,6 +17,7 @@ public class Users implements Serializable {
     @Column(nullable = false)
     private Integer type;
     //1-admin 2-artist
+
 
     public Users(){
     }
@@ -27,6 +28,7 @@ public class Users implements Serializable {
         this.type = type;
 
     }
+
 
     public String getUsername() {
         return username;

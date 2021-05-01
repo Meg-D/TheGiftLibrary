@@ -28,8 +28,8 @@ public class Products implements Serializable {
     public Products() {
     }
 
-    public Products( String name, String description, String price, Categories cate_id, Artists art_id, String photo) {
-
+    public Products( Integer product_id, String name, String description, String price, Categories cate_id, Artists art_id, String photo) {
+        this.product_id = product_id;
         this.name = name;
         this.description = description;
         this.price = price;

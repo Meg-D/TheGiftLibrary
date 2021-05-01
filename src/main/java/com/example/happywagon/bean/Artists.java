@@ -11,12 +11,14 @@ public class Artists implements Serializable {
     private Integer artist_id;
     @Column(nullable = false)
     private String name;
-    @Column(nullable = false, unique = true)
+
+    @Column(nullable = false,unique = true)
     private String email;
+
     @Column(nullable = false, unique = true)
     private String website;
     @Column(unique = true)
-    private long number;
+    private String number;
     private String about;
     @Column(unique = true)
     private String photo;
@@ -25,7 +27,8 @@ public class Artists implements Serializable {
     public Artists() {
     }
 
-    public Artists(String name, String email, String website, long number, String about, String photo) {
+    public Artists(Integer artist_id, String name, String email, String website, String number, String about, String photo) {
+        this.artist_id=artist_id;
         this.name = name;
         this.email = email;
         this.website = website;
@@ -66,11 +69,11 @@ public class Artists implements Serializable {
         this.website = website;
     }
 
-    public long getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(long number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 

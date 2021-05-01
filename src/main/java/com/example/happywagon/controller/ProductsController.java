@@ -28,7 +28,7 @@ public class ProductsController {
     //get all products by category
     @CrossOrigin(origins="http://localhost:3000")
     @GetMapping("/productsCate/{category_id}")
-    public Optional<Products> getProductsByCategory(@PathVariable String category_id){
+    public List<Products> getProductsByCategory(@PathVariable String category_id){
         // System.out.println("inside controller");
         return this.productService.getProductsByCategory(Integer.parseInt(category_id));
     }
@@ -36,7 +36,7 @@ public class ProductsController {
     //get all products by artist
     @CrossOrigin(origins="http://localhost:3000")
     @GetMapping("/productsArt/{artist_id}")
-    public Optional<Products> getProductsByArtist(@PathVariable String artist_id){
+    public List<Products> getProductsByArtist(@PathVariable String artist_id){
         // System.out.println("inside controller");
         return this.productService.getProductsByArtist(Integer.parseInt(artist_id));
     }

@@ -17,13 +17,10 @@ public class Artist_Requests implements Serializable {
     @Column(nullable = false, unique = true)
     private String website;
     @Column(unique = true)
-    private long number;
+    private String number;
     private String about;
     @Column(unique = true)
     private String photo;
-
-    @OneToOne
-    Users username;
 
     @Column(nullable = false)
     private String password;
@@ -31,7 +28,7 @@ public class Artist_Requests implements Serializable {
     public Artist_Requests() {
     }
 
-    public Artist_Requests(Integer request_id, String name, String email, String website, long number, String about, String photo, Users username, String password) {
+    public Artist_Requests(Integer request_id,String name, String email, String website, String number, String about, String photo, String password) {
         this.request_id = request_id;
         this.name = name;
         this.email = email;
@@ -39,7 +36,6 @@ public class Artist_Requests implements Serializable {
         this.number = number;
         this.about = about;
         this.photo = photo;
-        this.username = username;
         this.password = password;
     }
 
@@ -75,11 +71,11 @@ public class Artist_Requests implements Serializable {
         this.website = website;
     }
 
-    public long getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(long number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 
@@ -97,14 +93,6 @@ public class Artist_Requests implements Serializable {
 
     public void setPhoto(String photo) {
         this.photo = photo;
-    }
-
-    public Users getUsername() {
-        return username;
-    }
-
-    public void setUsername(Users username) {
-        this.username = username;
     }
 
     public String getPassword() {
