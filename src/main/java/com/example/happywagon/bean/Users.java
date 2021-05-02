@@ -18,7 +18,6 @@ public class Users implements Serializable {
     private Integer type;
     //1-admin 2-artist
 
-
     public Users(){
     }
 

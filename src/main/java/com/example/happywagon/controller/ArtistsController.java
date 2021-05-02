@@ -1,6 +1,7 @@
 package com.example.happywagon.controller;
 
 import com.example.happywagon.bean.Artists;
+import com.example.happywagon.bean.Register;
 import com.example.happywagon.services.ArtistsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins="*")
 @RestController
 public class ArtistsController {
 
@@ -17,7 +19,6 @@ public class ArtistsController {
     public ArtistsService artistService;
 
     //get all the artists
-    @CrossOrigin(origins="http://localhost:3000")
     @GetMapping("/artists")
     public List<Artists> getArtists(){
        // System.out.println("inside controller");
@@ -25,21 +26,29 @@ public class ArtistsController {
     }
 
    //get one artist
-   @CrossOrigin(origins="http://localhost:3000")
-    @GetMapping("/artists/{artistId}")
-    public Optional<Artists> getArtist(@PathVariable String artistId){
-        return this.artistService.getArtist(Integer.parseInt(artistId));
+    @GetMapping("/artists/{email}")
+    public Artists getArtist(@PathVariable String email){
+        return this.artistService.getArtistByEmail(email);
     }
 
     //add artist
-    @CrossOrigin(origins="http://localhost:3000")
     @PostMapping(path="/artists",consumes = "application/JSON")
     public Artists addArtist(@RequestBody Artists artist){
         return this.artistService.addArtist(artist);
     }
 
+    //register
+    @PostMapping (path= "/register",consumes = "application/JSON")
+    public ResponseEntity<HttpStatus> registerArtist(@RequestBody Register artist){
+        try{
+            this.artistService.registerArtist(artist);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch(Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     //update artist
-    @CrossOrigin(origins="http://localhost:3000")
     @PutMapping("/artists")
     public Artists updateArtist(@RequestBody Artists artist){
             return this.artistService.updateArtist(artist);
@@ -47,7 +56,7 @@ public class ArtistsController {
     }
 
     //delete artist
-    @CrossOrigin(origins="http://localhost:3000")
+    //@CrossOrigin(origins="http://localhost:3000")
     @DeleteMapping("/artists/{artistId}")
     public ResponseEntity<HttpStatus> deleteArtist(@PathVariable String artistId){
         try{

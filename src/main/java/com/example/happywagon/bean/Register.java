@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 @Entity
 @Table
-public class Artist_Requests implements Serializable {
+public class Register implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,10 +25,10 @@ public class Artist_Requests implements Serializable {
     @Column(nullable = false)
     private String password;
 
-    public Artist_Requests() {
+    public Register() {
     }
 
-    public Artist_Requests(Integer request_id,String name, String email, String website, String number, String about, String photo, String password) {
+    public Register(Integer request_id, String name, String email, String website, String number, String about, String photo, String password) {
         this.request_id = request_id;
         this.name = name;
         this.email = email;
@@ -37,7 +37,9 @@ public class Artist_Requests implements Serializable {
         this.about = about;
         this.photo = photo;
         this.password = password;
+
     }
+
 
     public Integer getRequest_id() {
         return request_id;

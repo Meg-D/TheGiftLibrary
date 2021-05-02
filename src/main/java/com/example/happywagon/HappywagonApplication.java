@@ -24,9 +24,6 @@ public class HappywagonApplication {
     ProductDao productDao;
 
     @Autowired
-    ArtistsRequestDao artistsRequestDao;
-
-    @Autowired
     CategoryRequestDao categoryRequestDao;
 
     public static void main(String[] args) {
@@ -44,13 +41,13 @@ public class HappywagonApplication {
             userDao.save(new Users("bytatiabaurre@gmail.com","hello",2));
             userDao.save(new Users("hello@illustration.com","hello",2));
 
-            Artists art1 = new Artists(1,"Alicia Souza","hello@aliciasouza.com","https://aliciasouza.com/","+91-72045 56468","Alicia Souza has been drawing since a kid, but unlike many kids, she just never stopped! Expect a constantly changing range with kooky characters and wonky personalities on products that you'd love to have or give!","icantt");
-            Artists art2 = new Artists(2,"Aishwarya Vohra","hello@aishwarya-vohra-1.com","https://www.happywagon.com/collections/aishwarya-vohra-1","+91-64465 64321"," am an illustrator and designer from India. I'm a bit of a dreamer and I love to paint whimsical illustrations.","./images/a3.jpg");
-            Artists art3 = new Artists(3,"Tatiana Abaurre","bytatiabaurre@gmail.com","https://www.tatiabaurre.com/about","+87-76543 87654","An illustrator of everything cute and sweet, Tati wonderfully finds the beauty in the everyday adding a touch of cuteness to everything she creates.","");
+            Artists art1 = new Artists(1,"Alicia Souza","hello@aliciasouza.com","hello","https://aliciasouza.com/","+91-72045 56468","Alicia Souza has been drawing since a kid, but unlike many kids, she just never stopped! Expect a constantly changing range with kooky characters and wonky personalities on products that you'd love to have or give!","icantt");
+            Artists art2 = new Artists(2,"Aishwarya Vohra","hello@aishwarya-vohra-1.com","hello","https://www.happywagon.com/collections/aishwarya-vohra-1","+91-64465 64321"," am an illustrator and designer from India. I'm a bit of a dreamer and I love to paint whimsical illustrations.","./images/a3.jpg");
+            Artists art3 = new Artists(3,"Tatiana Abaurre","bytatiabaurre@gmail.com","hello","https://www.tatiabaurre.com/about","+87-76543 87654","An illustrator of everything cute and sweet, Tati wonderfully finds the beauty in the everyday adding a touch of cuteness to everything she creates.","");
             artistDao.save(art1);
             artistDao.save(art2);
             artistDao.save(art3);
-            artistDao.save(new Artists(4,"Gail Armstrong", "hello@illustration.com" , "https://www.illustrationx.com/artists/GailArmstrong" , "+91-65432 12345" , "Gail Armstrong has been creating paper sculptures for over 25 years and her enthusiasm for the medium hasn’t waned one snip","4"));
+            artistDao.save(new Artists(4,"Gail Armstrong", "hello@illustration.com" ,"hello", "https://www.illustrationx.com/artists/GailArmstrong" , "+91-65432 12345" , "Gail Armstrong has been creating paper sculptures for over 25 years and her enthusiasm for the medium hasn’t waned one snip","4"));
 
             Categories cat1 = new Categories(1,"Potraits","drawing from a photograph","sample");
             Categories cat2 = new Categories(2,"Greetings","just a card, but with personalized effects","sample4");
@@ -77,10 +74,10 @@ public class HappywagonApplication {
             categoryRequestDao.save(new Category_Request(3,"pillow cover","pillow covers with customized printing"));
             categoryRequestDao.save(new Category_Request(4,"tshirts","tshirts with selected print and color"));
 
-            artistsRequestDao.save(new Artist_Requests(1,"Lin Chen","linchen@hello.com","https://www.illustrationx.com/artists/LinChen","+98-76533 33743","Although Lin Chen is fast, efficient and reliable, what her clients love most is the unique visual style she brings to their projects.","photo","hello"));
-            artistsRequestDao.save(new Artist_Requests(2,"Tim Bradford","timbrad@hello.com","https://www.illustrationx.com/artists/timbradford","+97-65341 33221","From alpine landscapes to geometry and animals, he’s inspired by nature and also loves drawing people of all sizes, shapes and nationalities.","photo2","hello"));
-            artistsRequestDao.save(new Artist_Requests(3,"Vikcy Scott","vicky1@art.com","https://www.illustrationx.com/artists/VickyScott","+09-87654 42424","Currently based in Sheffield,, Vicky draws inspiration from the natural world, Art Deco architecture, 60s psychedelia and artists like William Morris, Alphons Mucha, Aubrey Beardsley and Henri de Toulouse Lautrec.","photo3","hello"));
-            artistsRequestDao.save(new Artist_Requests(4,"Fioana Fernandes","fioana@artist.com","https://www.illustrationx.com/artists/FionnaFernandes","+98-32234 23732","Fionna Fernandes is a Sydney-based illustrator who enjoys drawing a variety of subject matter: portraits, stickers, landscapes, lifestyle and animals for clients in fashion, editorial, advertising and more.","photo4","hello"));
+//            artistsRequestDao.save(new Register(1,"Lin Chen","linchen@hello.com","https://www.illustrationx.com/artists/LinChen","+98-76533 33743","Although Lin Chen is fast, efficient and reliable, what her clients love most is the unique visual style she brings to their projects.","photo","hello"));
+//            artistsRequestDao.save(new Register(2,"Tim Bradford","timbrad@hello.com","https://www.illustrationx.com/artists/timbradford","+97-65341 33221","From alpine landscapes to geometry and animals, he’s inspired by nature and also loves drawing people of all sizes, shapes and nationalities.","photo2","hello"));
+//            artistsRequestDao.save(new Register(3,"Vikcy Scott","vicky1@art.com","https://www.illustrationx.com/artists/VickyScott","+09-87654 42424","Currently based in Sheffield,, Vicky draws inspiration from the natural world, Art Deco architecture, 60s psychedelia and artists like William Morris, Alphons Mucha, Aubrey Beardsley and Henri de Toulouse Lautrec.","photo3","hello"));
+//            artistsRequestDao.save(new Register(4,"Fioana Fernandes","fioana@artist.com","https://www.illustrationx.com/artists/FionnaFernandes","+98-32234 23732","Fionna Fernandes is a Sydney-based illustrator who enjoys drawing a variety of subject matter: portraits, stickers, landscapes, lifestyle and animals for clients in fashion, editorial, advertising and more.","photo4","hello"));
         };
     }
 

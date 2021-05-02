@@ -1,13 +1,13 @@
 package com.example.happywagon.services;
 
-import com.example.happywagon.bean.Artist_Requests;
+import com.example.happywagon.bean.Register;
 
 import java.util.List;
 
 public interface ArtistsRequestsService {
-    public List<Artist_Requests> getArtistsRequests();
+    public List<Register> getArtistsRequests();
 
-    public Artist_Requests addArtistRequest(Artist_Requests request);
+    public Register addArtistRequest(Register request);
     public void deleteArtistRequest(int request_id);
 
 }

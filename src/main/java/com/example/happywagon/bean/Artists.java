@@ -15,6 +15,9 @@ public class Artists implements Serializable {
     @Column(nullable = false,unique = true)
     private String email;
 
+    @Column(nullable = false)
+    private String password;
+
     @Column(nullable = false, unique = true)
     private String website;
     @Column(unique = true)
@@ -27,14 +30,23 @@ public class Artists implements Serializable {
     public Artists() {
     }
 
-    public Artists(Integer artist_id, String name, String email, String website, String number, String about, String photo) {
+    public Artists(Integer artist_id, String name, String email, String password, String website, String number, String about, String photo) {
         this.artist_id=artist_id;
         this.name = name;
         this.email = email;
+        this.password =password;
         this.website = website;
         this.number = number;
         this.about = about;
         this.photo = photo;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Integer getArtist_id() {
