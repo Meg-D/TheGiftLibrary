@@ -38,7 +38,7 @@ public class UsersController {
 
     // password
     @CrossOrigin(origins="http://localhost:3000")
-    @PostMapping(path= "/password",consumes = {"application/JSON"})
+    @PostMapping(path= "/password",produces={"application/TEXT"},consumes = {"application/JSON"})
     public String password(@RequestBody Password pass){
         String status = this.usersService.changePassword(pass.getEmail(),pass.getOld(),pass.getNewp(),pass.getNewp2());
         return status;

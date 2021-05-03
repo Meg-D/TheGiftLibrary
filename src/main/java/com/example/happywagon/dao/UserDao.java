@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public interface UserDao extends JpaRepository<Users, Integer> {
     Users findByUsernameEqualsAndPasswordEquals(String username, String password);
-    Users findByUsernameEquals(String username);
 
     @Query("SELECT u.password FROM Users u where u.username =:email")
     String getPasswordByEmail(@Param("email") String email);
