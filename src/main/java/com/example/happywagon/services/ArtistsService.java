@@ -2,6 +2,7 @@ package com.example.happywagon.services;
 
 import com.example.happywagon.bean.Artists;
 import com.example.happywagon.bean.Register;
+import org.springframework.core.io.Resource;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,5 +18,9 @@ public interface ArtistsService {
 
     public void deleteArtist(int artistId);
 
+    public Artists getArtistById(int artistId);
+
     public void registerArtist(Register artist);
+
+    public Resource loadImage(Artists artists);
 }

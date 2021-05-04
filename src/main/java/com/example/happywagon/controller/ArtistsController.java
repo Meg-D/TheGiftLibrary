@@ -4,6 +4,8 @@ import com.example.happywagon.bean.Artists;
 import com.example.happywagon.bean.Register;
 import com.example.happywagon.services.ArtistsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -65,6 +67,25 @@ public class ArtistsController {
         } catch(Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping(value = "/artists/image/{artistId}")
+    public ResponseEntity<Resource> getArtistImage(@PathVariable String artistId) {
+        System.out.println(artistId);
+//        Artists artist = this.artistService.getArtistById(Integer.parseInt(artistId));
+        Artists artist = new Artists();
+        artist.setPhoto("kali-linux.png");
+
+        if(artist == null){
+            return ResponseEntity.notFound().build();
+        }
+        Resource image = this.artistService.loadImage(artist);
+
+        if(image==null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
+                "attachment;name="+image.getFilename()).body(image);
     }
 
 
