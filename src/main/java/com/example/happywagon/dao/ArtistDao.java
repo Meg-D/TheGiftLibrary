@@ -14,6 +14,9 @@ public interface ArtistDao extends JpaRepository<Artists, Integer> {
     @Query("SELECT a FROM Artists a WHERE a.email= :email")
      Artists getArtistByEmail(@Param("email") String email);
 
+    @Query("SELECT a.email FROM Artists a WHERE a.email= :email")
+    String checkEmail(@Param("email") String email);
+
     @Query("SELECT max(artist_id) FROM Artists")
     Integer getNextArtistId();
 

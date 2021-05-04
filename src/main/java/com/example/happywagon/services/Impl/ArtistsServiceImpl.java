@@ -9,6 +9,7 @@ import com.example.happywagon.services.ArtistsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.plaf.synth.SynthTabbedPaneUI;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,12 +57,20 @@ public class ArtistsServiceImpl implements ArtistsService {
     }
 
     @Override
-    public void registerArtist(Register artist) {
+    public String registerArtist(Register artist) {
+        System.out.println("in seriveimpl");
+        System.out.println(artist);
+        String check = artistDao.checkEmail(artist.getEmail());
+        if(check != null){
+            return "not";
+        }
+
         Integer id = artistDao.getNextArtistId();
         id++;
         Artists entity1 = new Artists(id,artist.getName(),artist.getEmail(),artist.getPassword(),artist.getWebsite(),artist.getNumber(),artist.getAbout(),artist.getPhoto());
         artistDao.save(entity1);
         Users entity2 = new Users(artist.getEmail(),artist.getPassword(),2);
         userDao.save(entity2);
+        return "ok";
     }
 }

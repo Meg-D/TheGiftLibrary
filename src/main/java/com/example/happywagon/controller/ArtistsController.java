@@ -39,13 +39,11 @@ public class ArtistsController {
 
     //register
     @PostMapping (path= "/register",consumes = "application/JSON")
-    public ResponseEntity<HttpStatus> registerArtist(@RequestBody Register artist){
-        try{
-            this.artistService.registerArtist(artist);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch(Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public String registerArtist(@RequestBody Register artist){
+        String status = this.artistService.registerArtist(artist);
+        System.out.println("in controller");
+        if(status.equals("not")) return "USERNAME ALREADY EXISTS";
+        return "ok";
     }
 
     //update artist

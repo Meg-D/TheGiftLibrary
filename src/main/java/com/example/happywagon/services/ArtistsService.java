@@ -17,5 +17,5 @@ public interface ArtistsService {
 
     public void deleteArtist(int artistId);
 
-    public void registerArtist(Register artist);
+    public String registerArtist(Register artist);
 }
