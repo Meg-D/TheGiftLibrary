@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -48,6 +50,17 @@ public class ArtistsController {
         return "ok";
     }
 
+    @PostMapping(value = "/artists/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public String uploadDocument(@RequestParam MultipartFile file, @RequestParam String artistId) {
+        Artists artist = this.artistService.getArtistById(Integer.parseInt(artistId));
+        String file_name = this.artistService.uploadImage(file, artist);
+        if (file_name == null) {
+            return null;
+        }
+        this.artistService.updateArtist(artist);
+        return "ok";
+    }
+
     //update artist
     @PutMapping("/artists")
     public Artists updateArtist(@RequestBody Artists artist){
@@ -70,9 +83,9 @@ public class ArtistsController {
     @GetMapping(value = "/artists/image/{artistId}")
     public ResponseEntity<Resource> getArtistImage(@PathVariable String artistId) {
         System.out.println(artistId);
-//        Artists artist = this.artistService.getArtistById(Integer.parseInt(artistId));
-        Artists artist = new Artists();
-        artist.setPhoto("kali-linux.png");
+        Artists artist = this.artistService.getArtistById(Integer.parseInt(artistId));
+//        Artists artist = new Artists();
+//        artist.setPhoto("kali-linux.png");
 
         if(artist == null){
             return ResponseEntity.notFound().build();
