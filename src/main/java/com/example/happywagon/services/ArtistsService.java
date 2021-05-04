@@ -18,9 +18,8 @@ public interface ArtistsService {
 
     public void deleteArtist(int artistId);
 
-    public Artists getArtistById(int artistId);
-
-    public void registerArtist(Register artist);
 
     public Resource loadImage(Artists artists);
+
+    public String registerArtist(Register artist);
 }

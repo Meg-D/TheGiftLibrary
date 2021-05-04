@@ -11,4 +11,5 @@ public interface ProductsService {
     public List<Products> getProductsByCategory(int category_id);
     public List<Products> getProductsByArtist(int artist_id);
     public List<Products> getProducts();
+    Products getProductById(int product_id);
 }

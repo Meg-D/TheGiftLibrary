@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.net.MalformedURLException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import javax.swing.plaf.synth.SynthTabbedPaneUI;
 import java.util.List;
 import java.util.Optional;
 
@@ -60,19 +61,23 @@ public class ArtistsServiceImpl implements ArtistsService {
         artistDao.delete(entity);
     }
 
-    @Override
-    public Artists getArtistById(int artistId) {
-        return artistDao.getOne(artistId);
-    }
 
     @Override
-    public void registerArtist(Register artist) {
+    public String registerArtist(Register artist) {
+        System.out.println("in seriveimpl");
+        System.out.println(artist);
+        String check = artistDao.checkEmail(artist.getEmail());
+        if(check != null){
+            return "not";
+        }
+
         Integer id = artistDao.getNextArtistId();
         id++;
         Artists entity1 = new Artists(id,artist.getName(),artist.getEmail(),artist.getPassword(),artist.getWebsite(),artist.getNumber(),artist.getAbout(),artist.getPhoto());
         artistDao.save(entity1);
         Users entity2 = new Users(artist.getEmail(),artist.getPassword(),2);
         userDao.save(entity2);
+        return "ok";
     }
 
     @Override
