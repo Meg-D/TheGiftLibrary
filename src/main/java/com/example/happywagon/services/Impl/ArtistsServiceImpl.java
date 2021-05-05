@@ -93,6 +93,26 @@ public class ArtistsServiceImpl implements ArtistsService {
         return "ok";
     }
 
+
+
+    @Override
+    public Resource loadImage(Artists artists) {
+        try {
+            Path upload_location = Paths.get(image_location);
+            Path file = upload_location.resolve(artists.getPhoto());
+            Resource resource = new UrlResource(file.toUri());
+            if (resource.exists() || resource.isReadable()) {
+                return resource;
+            } else {
+                return null;
+            }
+        } catch (MalformedURLException error) {
+            System.out.println("Error: [loadImage][ArtistsServiceImpl] " + error.getLocalizedMessage());
+        }
+        return null;
+    }
+
+
     @Override
     public String uploadImage(MultipartFile image, Artists artists) {
         if (image.getOriginalFilename() == null) {
@@ -113,23 +133,6 @@ public class ArtistsServiceImpl implements ArtistsService {
             return fileName;
         } catch (IOException error) {
             System.out.println("Error: [uploadImage][ArtistsServiceImpl] " + error.getLocalizedMessage());
-        }
-        return null;
-    }
-
-    @Override
-    public Resource loadImage(Artists artists) {
-        try {
-            Path upload_location = Paths.get(image_location);
-            Path file = upload_location.resolve(artists.getPhoto());
-            Resource resource = new UrlResource(file.toUri());
-            if (resource.exists() || resource.isReadable()) {
-                return resource;
-            } else {
-                return null;
-            }
-        } catch (MalformedURLException error) {
-            System.out.println("Error: [loadImage][ArtistsServiceImpl] " + error.getLocalizedMessage());
         }
         return null;
     }

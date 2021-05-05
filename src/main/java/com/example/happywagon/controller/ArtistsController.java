@@ -50,16 +50,6 @@ public class ArtistsController {
         return "ok";
     }
 
-    @PostMapping(value = "/artists/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public String uploadDocument(@RequestParam MultipartFile file, @RequestParam String artistId) {
-        Artists artist = this.artistService.getArtistById(Integer.parseInt(artistId));
-        String file_name = this.artistService.uploadImage(file, artist);
-        if (file_name == null) {
-            return null;
-        }
-        this.artistService.updateArtist(artist);
-        return "ok";
-    }
 
     //update artist
     @PutMapping("/artists")
@@ -80,12 +70,13 @@ public class ArtistsController {
         }
     }
 
+    // Get artist images
     @GetMapping(value = "/artists/image/{artistId}")
     public ResponseEntity<Resource> getArtistImage(@PathVariable String artistId) {
         System.out.println(artistId);
-        Artists artist = this.artistService.getArtistById(Integer.parseInt(artistId));
-//        Artists artist = new Artists();
-//        artist.setPhoto("kali-linux.png");
+//        Artists artist = this.artistService.getArtistById(Integer.parseInt(artistId));
+        Artists artist = new Artists();
+        artist.setPhoto("art.jpg");
 
         if(artist == null){
             return ResponseEntity.notFound().build();
@@ -97,6 +88,18 @@ public class ArtistsController {
         }
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
                 "attachment;name="+image.getFilename()).body(image);
+    }
+
+    // Upload artist images
+    @PostMapping(value = "/artists/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public String uploadDocument(@RequestParam MultipartFile file, @RequestParam String artistId) {
+        Artists artist = this.artistService.getArtistById(Integer.parseInt(artistId));
+        String file_name = this.artistService.uploadImage(file, artist);
+        if (file_name == null) {
+            return null;
+        }
+        this.artistService.updateArtist(artist);
+        return "ok";
     }
 
 
