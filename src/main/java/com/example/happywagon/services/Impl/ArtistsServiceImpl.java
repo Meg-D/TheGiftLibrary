@@ -86,6 +86,8 @@ public class ArtistsServiceImpl implements ArtistsService {
 
         Integer id = artistDao.getNextArtistId();
         id++;
+
+        // directly storing to Artists table
         Artists entity1 = new Artists(id,artist.getName(),artist.getEmail(),artist.getPassword(),artist.getWebsite(),artist.getNumber(),artist.getAbout(),artist.getPhoto());
         artistDao.save(entity1);
         Users entity2 = new Users(artist.getEmail(),artist.getPassword(),2);

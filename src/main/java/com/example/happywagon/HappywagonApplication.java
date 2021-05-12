@@ -41,13 +41,13 @@ public class HappywagonApplication {
             userDao.save(new Users("bytatiabaurre@gmail.com","hello",2));
             userDao.save(new Users("hello@illustration.com","hello",2));
 
-            Artists art1 = new Artists(1,"Alicia Souza","hello@aliciasouza.com","hello","https://aliciasouza.com/","+91-72045 56468","Alicia Souza has been drawing since a kid, but unlike many kids, she just never stopped! Expect a constantly changing range with kooky characters and wonky personalities on products that you'd love to have or give!","icantt");
-            Artists art2 = new Artists(2,"Aishwarya Vohra","hello@aishwarya-vohra-1.com","hello","https://www.happywagon.com/collections/aishwarya-vohra-1","+91-64465 64321"," am an illustrator and designer from India. I'm a bit of a dreamer and I love to paint whimsical illustrations.","./images/a3.jpg");
-            Artists art3 = new Artists(3,"Tatiana Abaurre","bytatiabaurre@gmail.com","hello","https://www.tatiabaurre.com/about","+87-76543 87654","An illustrator of everything cute and sweet, Tati wonderfully finds the beauty in the everyday adding a touch of cuteness to everything she creates.","");
+            Artists art1 = new Artists(1,"Alicia Souza","hello@aliciasouza.com","hello","https://aliciasouza.com/","+91-72045 56468","Alicia Souza has been drawing since a kid, but unlike many kids, she just never stopped! Expect a constantly changing range with kooky characters and wonky personalities on products that you'd love to have or give!","Alicia-Souza.jpg");
+            Artists art2 = new Artists(2,"Aishwarya Vohra","hello@aishwarya-vohra-1.com","hello","https://www.happywagon.com/collections/aishwarya-vohra-1","+91-64465 64321"," am an illustrator and designer from India. I'm a bit of a dreamer and I love to paint whimsical illustrations.","aishwarya-vohra.jpeg");
+            Artists art3 = new Artists(3,"Tatiana Abaurre","bytatiabaurre@gmail.com","hello","https://www.tatiabaurre.com/about","+87-76543 87654","An illustrator of everything cute and sweet, Tati wonderfully finds the beauty in the everyday adding a touch of cuteness to everything she creates.","tatiana-abaurre.jpg");
             artistDao.save(art1);
             artistDao.save(art2);
             artistDao.save(art3);
-            artistDao.save(new Artists(4,"Gail Armstrong", "hello@illustration.com" ,"hello", "https://www.illustrationx.com/artists/GailArmstrong" , "+91-65432 12345" , "Gail Armstrong has been creating paper sculptures for over 25 years and her enthusiasm for the medium hasn’t waned one snip","4"));
+            artistDao.save(new Artists(4,"Gail Armstrong", "hello@illustration.com" ,"hello", "https://www.illustrationx.com/artists/GailArmstrong" , "+91-65432 12345" , "Gail Armstrong has been creating paper sculptures for over 25 years and her enthusiasm for the medium hasn’t waned one snip","gail.jpeg"));
 
             Categories cat1 = new Categories(1,"Potraits","drawing from a photograph","sample");
             Categories cat2 = new Categories(2,"Greetings","just a card, but with personalized effects","sample4");

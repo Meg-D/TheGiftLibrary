@@ -15,8 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins="*")
 @RestController
+@CrossOrigin(origins = "*")
 public class ArtistsController {
 
     @Autowired
@@ -41,16 +41,6 @@ public class ArtistsController {
         return this.artistService.addArtist(artist);
     }
 
-    //register
-    @PostMapping (path= "/register",consumes = "application/JSON")
-    public String registerArtist(@RequestBody Register artist){
-        String status = this.artistService.registerArtist(artist);
-        System.out.println("in controller");
-        if(status.equals("not")) return "USERNAME ALREADY EXISTS";
-        return "ok";
-    }
-
-
     //update artist
     @PutMapping("/artists")
     public Artists updateArtist(@RequestBody Artists artist){
@@ -74,9 +64,9 @@ public class ArtistsController {
     @GetMapping(value = "/artists/image/{artistId}")
     public ResponseEntity<Resource> getArtistImage(@PathVariable String artistId) {
         System.out.println(artistId);
-//        Artists artist = this.artistService.getArtistById(Integer.parseInt(artistId));
-        Artists artist = new Artists();
-        artist.setPhoto("art.jpg");
+        Artists artist = this.artistService.getArtistById(Integer.parseInt(artistId));
+//        Artists artist = new Artists();
+//        artist.setPhoto("art.jpg");
 
         if(artist == null){
             return ResponseEntity.notFound().build();
@@ -90,17 +80,44 @@ public class ArtistsController {
                 "attachment;name="+image.getFilename()).body(image);
     }
 
-    // Upload artist images
-    @PostMapping(value = "/artists/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public String uploadDocument(@RequestParam MultipartFile file, @RequestParam String artistId) {
-        Artists artist = this.artistService.getArtistById(Integer.parseInt(artistId));
-        String file_name = this.artistService.uploadImage(file, artist);
+//    @CrossOrigin(origins = "*")
+    //register
+    @PostMapping (path= "/register",consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
+    public String registerArtist(@RequestParam MultipartFile file, @RequestParam String about,
+                                 @RequestParam String name, @RequestParam String email, @RequestParam String password,
+                                 @RequestParam String number, @RequestParam String website){
+
+        Register artists = new Register();
+        artists.setAbout(about);
+        artists.setEmail(email);
+        artists.setName(name);
+        artists.setNumber(number);
+        artists.setWebsite(website);
+        artists.setPassword(password);
+
+        String status = this.artistService.registerArtist(artists);
+
+        if(status.equals("not")) return "USERNAME ALREADY EXISTS";
+        Artists artists1 = this.artistService.getArtistByEmail(email);
+        String file_name = this.artistService.uploadImage(file, artists1);
         if (file_name == null) {
             return null;
         }
-        this.artistService.updateArtist(artist);
+        artists1.setPhoto(file_name);
+        this.artistService.updateArtist(artists1);
+
         return "ok";
     }
+
+
+
+//    // Upload artist images
+////    @CrossOrigin(origins="http://localhost:3000")
+//    @PostMapping(value = "/artists/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+//    public String uploadDocument(@RequestParam MultipartFile file, @RequestParam int artistId) {
+//        Artists artist = this.artistService.getArtistById(artistId);
+//        return "ok";
+//    }
 
 
 }
