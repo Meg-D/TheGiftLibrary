@@ -1,0 +1,47 @@
+pipeline{
+    environment{
+        imageName = ""
+    }
+    agent any
+stages {
+        stage('clone react project'){
+            steps{
+                git 'https://github.com/Sounak-Dey/TGL-React'
+            }
+        }
+        stage('Build react app') {
+            steps {
+                sh 'npm install'
+            }
+        }
+        stage('clone spring project'){
+            steps{
+                git 'https://github.com/Meg-D/TheGiftLibrary'
+            }
+        }
+        stage('build spring app'){
+            steps{
+                script{
+                    sh "mvn clean install"
+                }
+            }
+        }
+        stage('Docker Build to Image') {
+            steps {
+                script{
+          imageName = docker.build "megd30/tgl:latest"
+            }
+            }
+        }
+         stage('Push docker image') {
+            steps {
+                script{
+             docker.withRegistry('','dockerhub'){
+                imageName.push()
+                    }
+                    docker.build 'megd30/tgl'
+                }
+            }
+        }
+    }
+}
