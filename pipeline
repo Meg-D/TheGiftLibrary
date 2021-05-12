@@ -1,6 +1,8 @@
 pipeline{
     environment{
         imageName = ""
+        dockerHubReact ="megd30/tgl-react"
+        dockerHubSpring = "megd30/tgl-spring"
     }
     agent any
 stages {
