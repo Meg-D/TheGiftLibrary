@@ -98,11 +98,14 @@ public class ArtistsController {
         String status = this.artistService.registerArtist(artists);
 
         if(status.equals("not")) return "USERNAME ALREADY EXISTS";
+
         Artists artists1 = this.artistService.getArtistByEmail(email);
         String file_name = this.artistService.uploadImage(file, artists1);
+
         if (file_name == null) {
             return null;
         }
+
         artists1.setPhoto(file_name);
         this.artistService.updateArtist(artists1);
 
