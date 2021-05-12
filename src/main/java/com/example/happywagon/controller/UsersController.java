@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins="*")
 @RestController
@@ -26,14 +23,11 @@ public class UsersController {
 
     // login
     @CrossOrigin(origins="http://localhost:3000")
-    @PostMapping(path = "/login",
-            produces = {"application/json"},
-            consumes = {"application/json"})
-    public Artists login(@RequestBody Users credentials) {
+    @GetMapping(path = "/login")
+    public Users login(@RequestBody Users credentials) {
         System.out.println("controller : " + credentials.getUsername() + "  " + credentials.getPassword());
         Users u = this.usersService.login(credentials.getUsername(),credentials.getPassword());
-        if (u == null) return null;
-        return this.artistService.getArtistByEmail(credentials.getUsername());
+        return u;
     }
 
     // password
