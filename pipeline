@@ -26,20 +26,35 @@ stages {
                 }
             }
         }
-        stage('Docker Build to Image') {
+        stage('Docker Build Image - tglReact') {
             steps {
                 script{
-          imageName = docker.build "megd30/tgl:latest"
-            }
+                imageName = docker.build dockerHubReact + ":latest"
+                }
             }
         }
-         stage('Push docker image') {
+         stage('deploy docker image - tglReact') {
             steps {
                 script{
-             docker.withRegistry('','dockerhub'){
-                imageName.push()
+                    docker.withRegistry('','dockerhub'){
+                    imageName.push()
                     }
-                    docker.build 'megd30/tgl'
+                }
+            }
+        }
+        stage('Docker Build Image - tglSpring') {
+            steps {
+                script{
+                imageName = docker.build dockerHubSpring + ":latest"
+                }
+            }
+        }
+         stage('deploy docker image - tglSpring') {
+            steps {
+                script{
+                    docker.withRegistry('','dockerhub'){
+                    imageName.push()
+                    }
                 }
             }
         }
