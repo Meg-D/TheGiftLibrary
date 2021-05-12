@@ -3,6 +3,8 @@ package com.example.happywagon.controller;
 import com.example.happywagon.bean.Artists;
 import com.example.happywagon.bean.Register;
 import com.example.happywagon.services.ArtistsService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -19,6 +21,7 @@ import java.util.Optional;
 @RestController
 public class ArtistsController {
 
+    Logger logger = LoggerFactory.getLogger(ArtistsController.class);
     @Autowired
     public ArtistsService artistService;
 
@@ -26,18 +29,21 @@ public class ArtistsController {
     @GetMapping("/artists")
     public List<Artists> getArtists(){
        // System.out.println("inside controller");
+        logger.info("getting all the artists");
         return this.artistService.getArtists();
     }
 
    //get one artist
     @GetMapping("/artists/{email}")
     public Artists getArtist(@PathVariable String email){
+        logger.info("getting the artist with email: "+ email);
         return this.artistService.getArtistByEmail(email);
     }
 
     //add artist
     @PostMapping(path="/artists",consumes = "application/JSON")
     public Artists addArtist(@RequestBody Artists artist){
+        logger.info("adding a new artist");
         return this.artistService.addArtist(artist);
     }
 
@@ -46,7 +52,12 @@ public class ArtistsController {
     public String registerArtist(@RequestBody Register artist){
         String status = this.artistService.registerArtist(artist);
         System.out.println("in controller");
-        if(status.equals("not")) return "USERNAME ALREADY EXISTS";
+        logger.info("registering a new artist");
+        if(status.equals("not")) {
+            logger.info("trying to register with same email");
+            return "USERNAME ALREADY EXISTS";
+        }
+        logger.info("artist registered");
         return "ok";
     }
 
@@ -54,15 +65,15 @@ public class ArtistsController {
     //update artist
     @PutMapping("/artists")
     public Artists updateArtist(@RequestBody Artists artist){
+            logger.info("updating artist");
             return this.artistService.updateArtist(artist);
-
     }
 
     //delete artist
-    //@CrossOrigin(origins="http://localhost:3000")
     @DeleteMapping("/artists/{artistId}")
     public ResponseEntity<HttpStatus> deleteArtist(@PathVariable String artistId){
         try{
+            logger.info("deleting an artist with id: ",artistId);
             this.artistService.deleteArtist(Integer.parseInt(artistId));
             return new ResponseEntity<>(HttpStatus.OK);
         } catch(Exception e){
