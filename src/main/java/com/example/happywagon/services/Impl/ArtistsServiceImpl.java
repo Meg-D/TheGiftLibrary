@@ -26,7 +26,7 @@ import java.util.List;
 @Service
 public class ArtistsServiceImpl implements ArtistsService {
 
-    @Value("${image_upload_location}")
+    @Value("${artist_image_upload_location}")
     private String image_location;
 
     @Autowired
