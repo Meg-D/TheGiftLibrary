@@ -98,16 +98,16 @@ public class HappywagonApplication {
             categoryDao.save(new Categories(4,"Explosion Box","chocolates and memories packed inside a box","sample3"));
 
 
-            productDao.save(new Products(1,"birthday","cute birthday greeting","Rs120",cat1,art1,"prod1"));
-            productDao.save(new Products(2,"recipe book","set of 4 recipe books for mom","Rs800",cat1,art2,"prod2"));
-            productDao.save(new Products(3,"surprise box","box containing surprise gifts","Rs240",cat1,art3,"prod3"));
-            productDao.save(new Products(4,"essence","3 bottles of sweet essence","Rs480",cat2,art1,"prod4"));
-            productDao.save(new Products(5,"Greeting card","card of a loved one","Rs99",cat2,art2,"prod5"));
-            productDao.save(new Products(6,"bells","6 bells for decoration","Rs360",cat2,art3,"prod6"));
-            productDao.save(new Products(7,"pebbles","10 customized pebbles","Rs899",cat2,art1,"prod7"));
-            productDao.save(new Products(8,"box","Ice Cream Sundae in a box","Rs560",cat3,art2,"prod8"));
-            productDao.save(new Products(9,"happy jar","jar full of happy notes","Rs233",cat3,art3,"prod9"));
-            productDao.save(new Products(10,"jar","set of 3 sewing jars","Rs720",cat3,art3,"prod10"));
+            productDao.save(new Products(1,"birthday","cute birthday greeting","Rs120",cat1,art1,"prod1.jpeg"));
+            productDao.save(new Products(2,"recipe book","set of 4 recipe books for mom","Rs800",cat1,art2,"prod2.jpg"));
+            productDao.save(new Products(3,"surprise box","box containing surprise gifts","Rs240",cat1,art3,"prod3.jpg"));
+            productDao.save(new Products(4,"essence","3 bottles of sweet essence","Rs480",cat2,art1,"prod4.jpg"));
+            productDao.save(new Products(5,"Greeting card","card of a loved one","Rs99",cat2,art2,"prod5.jpg"));
+            productDao.save(new Products(6,"bells","6 bells for decoration","Rs360",cat2,art3,"prod6.jpg"));
+            productDao.save(new Products(7,"pebbles","10 customized pebbles","Rs899",cat2,art1,"prod7.jpg"));
+            productDao.save(new Products(8,"box","Ice Cream Sundae in a box","Rs560",cat3,art2,"prod8.jpg"));
+            productDao.save(new Products(9,"happy jar","jar full of happy notes","Rs233",cat3,art3,"prod9.jpg"));
+            productDao.save(new Products(10,"jar","set of 3 sewing jars","Rs720",cat3,art3,"prod10.jpg"));
 
             categoryRequestDao.save(new Category_Request(1,"light bottles","lights wrapped inside a bottle"));
             categoryRequestDao.save(new Category_Request(2,"photo collage","collage of photos"));
