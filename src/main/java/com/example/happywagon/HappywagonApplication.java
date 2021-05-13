@@ -89,13 +89,13 @@ public class HappywagonApplication {
             artistDao.save(art3);
             artistDao.save(new Artists(4,"Gail Armstrong", "hello@illustration.com" ,"hello", "https://www.illustrationx.com/artists/GailArmstrong" , "+91-65432 12345" , "Gail Armstrong has been creating paper sculptures for over 25 years and her enthusiasm for the medium hasn’t waned one snip","gail.jpeg"));
 
-            Categories cat1 = new Categories(1,"Portraits","drawing from a photograph","sample");
-            Categories cat2 = new Categories(2,"Greetings","just a card, but with personalized effects","sample4");
-            Categories cat3 = new Categories(3,"Infinity Box","box that will go on opening till it vanishes","sample2");
+            Categories cat1 = new Categories(1,"Portraits","drawing from a photograph","potraits.jpg");
+            Categories cat2 = new Categories(2,"Greetings","just a card, but with personalized effects","greeting_card.jpg");
+            Categories cat3 = new Categories(3,"Infinity Box","box that will go on opening till it vanishes","infinitybox.jpg");
             categoryDao.save(cat1);
             categoryDao.save(cat2);
             categoryDao.save(cat3);
-            categoryDao.save(new Categories(4,"Explosion Box","chocolates and memories packed inside a box","sample3"));
+            categoryDao.save(new Categories(4,"Explosion Box","chocolates and memories packed inside a box","explosion-box.jpg"));
 
 
             productDao.save(new Products(1,"birthday","cute birthday greeting","Rs120",cat1,art1,"prod1.jpeg"));
