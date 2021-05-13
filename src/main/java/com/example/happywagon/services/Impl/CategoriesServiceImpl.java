@@ -9,10 +9,16 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 @Service
@@ -72,5 +78,31 @@ public class CategoriesServiceImpl implements CategoriesService {
         }
         return null;
     }
+
+    @Override
+    public String uploadImage(MultipartFile image, Categories category) {
+        if (image.getOriginalFilename() == null) {
+            return null;
+        }
+        String fileName = StringUtils.cleanPath(image.getOriginalFilename());
+        if (image.isEmpty()) {
+            return null;
+        }
+        if (fileName.contains("..")) {
+            fileName = fileName.replace("..", "_");
+        }
+        try (InputStream inputStream = image.getInputStream()) {
+            Path upload_location = Paths.get(image_location);
+            fileName = fileName + "_" + category.getCategory_id();
+            Files.copy(inputStream, upload_location.resolve(fileName),
+                    StandardCopyOption.REPLACE_EXISTING);
+            return fileName;
+        } catch (IOException error) {
+            System.out.println("Error: [uploadImage][ArtistsServiceImpl] " + error.getLocalizedMessage());
+        }
+        return null;
+    }
+
+
 }
 
