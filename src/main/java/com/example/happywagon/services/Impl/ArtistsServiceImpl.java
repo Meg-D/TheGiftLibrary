@@ -76,7 +76,7 @@ public class ArtistsServiceImpl implements ArtistsService {
 
     @Override
     public String registerArtist(Artists artist) {
-        System.out.println("in seriveimpl");
+
         System.out.println(artist);
         String check = artistDao.checkEmail(artist.getEmail());
         if(check != null){
@@ -93,8 +93,6 @@ public class ArtistsServiceImpl implements ArtistsService {
         userDao.save(entity2);
         return "ok";
     }
-
-
 
     @Override
     public Resource loadImage(Artists artists) {

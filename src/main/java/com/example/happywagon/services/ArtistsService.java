@@ -24,4 +24,5 @@ public interface ArtistsService {
     public String registerArtist(Artists artist);
 
     public String uploadImage(MultipartFile image, Artists artists);
+
 }

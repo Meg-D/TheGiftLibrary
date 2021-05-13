@@ -45,7 +45,6 @@ public class ArtistsController {
         return this.artistService.addArtist(artist);
     }
 
-
     //update artist
     @PutMapping("/artists")
     public Artists updateArtist(@RequestBody Artists artist){
@@ -85,7 +84,6 @@ public class ArtistsController {
                 "attachment;name="+image.getFilename()).body(image);
     }
 
-//    @CrossOrigin(origins = "*")
     //register
     @PostMapping (path= "/register",consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
     public String registerArtist(@RequestParam MultipartFile file, @RequestParam String about,
@@ -114,18 +112,20 @@ public class ArtistsController {
         artists1.setPhoto(file_name);
         this.artistService.updateArtist(artists1);
 
+
         return "ok";
     }
 
-
-
-//    // Upload artist images
-////    @CrossOrigin(origins="http://localhost:3000")
+    //    // Upload artist images
 //    @PostMapping(value = "/artists/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-//    public String uploadDocument(@RequestParam MultipartFile file, @RequestParam int artistId) {
-//        Artists artist = this.artistService.getArtistById(artistId);
+//    public String uploadDocument(@RequestParam MultipartFile file, @RequestParam String artistId) {
+//        Artists artist = this.artistService.getArtistById(Integer.parseInt(artistId));
+//        String file_name = this.artistService.uploadImage(file, artist);
+//        if (file_name == null) {
+//            return null;
+//        }
+//        this.artistService.updateArtist(artist);
 //        return "ok";
 //    }
-
 
 }
