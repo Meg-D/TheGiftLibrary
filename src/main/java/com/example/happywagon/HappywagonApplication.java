@@ -109,10 +109,10 @@ public class HappywagonApplication {
             productDao.save(new Products(9,"happy jar","jar full of happy notes","Rs233",cat3,art3,"prod9.jpg"));
             productDao.save(new Products(10,"jar","set of 3 sewing jars","Rs720",cat3,art3,"prod10.jpg"));
 
-            categoryRequestDao.save(new Category_Request(1,"light bottles","lights wrapped inside a bottle"));
-            categoryRequestDao.save(new Category_Request(2,"photo collage","collage of photos"));
-            categoryRequestDao.save(new Category_Request(3,"pillow cover","pillow covers with customized printing"));
-            categoryRequestDao.save(new Category_Request(4,"tshirts","tshirts with selected print and color"));
+            categoryRequestDao.save(new Category_Request(1,"light bottles","lights wrapped inside a bottle","lightbottles.jpg"));
+            categoryRequestDao.save(new Category_Request(2,"photo collage","collage of photos","collage.png"));
+            categoryRequestDao.save(new Category_Request(3,"pillow cover","pillow covers with customized printing","pillowcover.jpg"));
+            categoryRequestDao.save(new Category_Request(4,"tshirts","tshirts with selected print and color","tshirt.jpg"));
 
 //            artistsRequestDao.save(new Register(1,"Lin Chen","linchen@hello.com","https://www.illustrationx.com/artists/LinChen","+98-76533 33743","Although Lin Chen is fast, efficient and reliable, what her clients love most is the unique visual style she brings to their projects.","photo","hello"));
 //            artistsRequestDao.save(new Register(2,"Tim Bradford","timbrad@hello.com","https://www.illustrationx.com/artists/timbradford","+97-65341 33221","From alpine landscapes to geometry and animals, he’s inspired by nature and also loves drawing people of all sizes, shapes and nationalities.","photo2","hello"));

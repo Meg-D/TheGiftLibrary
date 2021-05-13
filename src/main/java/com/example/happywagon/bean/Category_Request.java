@@ -13,17 +13,25 @@ public class Category_Request  implements Serializable {
     private Integer request_id;
     @Column(nullable = false)
     private String name;
-    @Column
     private String about;
+    private String photo;
 
     public Category_Request(){
-
     }
 
-    public Category_Request( Integer request_id, String name, String about) {
+    public Category_Request( Integer request_id, String name, String about, String photo) {
         this.request_id = request_id;
         this.name = name;
         this.about = about;
+        this.photo = photo;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public Integer getRequest_id() {

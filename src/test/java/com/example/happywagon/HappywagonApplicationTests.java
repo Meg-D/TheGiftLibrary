@@ -115,7 +115,7 @@ class HappywagonApplicationTests {
 
     @Test
     public void save_delete_CategoryRequest(){
-        Category_Request cateReq = new Category_Request(5,"demo","for testing");
+        Category_Request cateReq = new Category_Request(5,"demo","for testing","");
         categoryRequestDao.save(cateReq);
         int id=0;
         List<Category_Request> cateReqList = categoryRequestDao.findAll();

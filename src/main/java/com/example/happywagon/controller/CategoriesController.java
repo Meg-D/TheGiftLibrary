@@ -74,6 +74,7 @@ public class CategoriesController {
                 "attachment;name="+image.getFilename()).body(image);
     }
 
+    // add a new category
     @PostMapping(path="/categories",consumes= MediaType.MULTIPART_FORM_DATA_VALUE)
     public Categories addCategory(@RequestParam MultipartFile file, @RequestParam String about,
                                   @RequestParam String name){
