@@ -1,7 +1,6 @@
 package com.example.happywagon.controller;
 
 import com.example.happywagon.bean.Artists;
-import com.example.happywagon.bean.Register;
 import com.example.happywagon.services.ArtistsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-import java.util.Optional;
 
 @CrossOrigin(origins="*")
 @RestController
@@ -47,21 +45,6 @@ public class ArtistsController {
         return this.artistService.addArtist(artist);
     }
 
-    //register
-    @PostMapping (path= "/register",consumes = "application/JSON")
-    public String registerArtist(@RequestBody Register artist){
-        String status = this.artistService.registerArtist(artist);
-        System.out.println("in controller");
-        logger.info("registering a new artist");
-        if(status.equals("not")) {
-            logger.info("trying to register with same email");
-            return "USERNAME ALREADY EXISTS";
-        }
-        logger.info("artist registered");
-        return "ok";
-    }
-
-
     //update artist
     @PutMapping("/artists")
     public Artists updateArtist(@RequestBody Artists artist){
@@ -85,9 +68,9 @@ public class ArtistsController {
     @GetMapping(value = "/artists/image/{artistId}")
     public ResponseEntity<Resource> getArtistImage(@PathVariable String artistId) {
         System.out.println(artistId);
-//        Artists artist = this.artistService.getArtistById(Integer.parseInt(artistId));
-        Artists artist = new Artists();
-        artist.setPhoto("art.jpg");
+        Artists artist = this.artistService.getArtistById(Integer.parseInt(artistId));
+//        Artists artist = new Artists();
+//        artist.setPhoto("art.jpg");
 
         if(artist == null){
             return ResponseEntity.notFound().build();
@@ -101,17 +84,46 @@ public class ArtistsController {
                 "attachment;name="+image.getFilename()).body(image);
     }
 
-    // Upload artist images
-    @PostMapping(value = "/artists/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public String uploadDocument(@RequestParam MultipartFile file, @RequestParam String artistId) {
-        Artists artist = this.artistService.getArtistById(Integer.parseInt(artistId));
-        String file_name = this.artistService.uploadImage(file, artist);
+//    // Upload artist images
+//    @PostMapping(value = "/artists/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+//    public String uploadDocument(@RequestParam MultipartFile file, @RequestParam String artistId) {
+//        Artists artist = this.artistService.getArtistById(Integer.parseInt(artistId));
+//        String file_name = this.artistService.uploadImage(file, artist);
+//        if (file_name == null) {
+//            return null;
+//        }
+//        this.artistService.updateArtist(artist);
+//        return "ok";
+//    }
+
+    //register
+    @PostMapping (path= "/register",consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
+    public String registerArtist(@RequestParam MultipartFile file, @RequestParam String about,
+                                 @RequestParam String name, @RequestParam String email, @RequestParam String password,
+                                 @RequestParam String number, @RequestParam String website){
+
+        Artists artists = new Artists();
+        artists.setAbout(about);
+        artists.setEmail(email);
+        artists.setName(name);
+        artists.setNumber(number);
+        artists.setWebsite(website);
+        artists.setPassword(password);
+
+        String status = this.artistService.registerArtist(artists);
+
+        if(status.equals("not")) return "USERNAME ALREADY EXISTS";
+
+        Artists artists1 = this.artistService.getArtistByEmail(email);
+        String file_name = this.artistService.uploadImage(file, artists1);
+
         if (file_name == null) {
             return null;
         }
-        this.artistService.updateArtist(artist);
+
+        artists1.setPhoto(file_name);
+        this.artistService.updateArtist(artists1);
+
         return "ok";
     }
-
-
 }

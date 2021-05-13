@@ -6,6 +6,8 @@ import com.example.happywagon.services.ProductsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -69,5 +71,25 @@ public class ProductsController {
         } catch(Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    // Get Product images
+    @GetMapping(value = "/products/image/{productId}")
+    public ResponseEntity<Resource> getProductImage(@PathVariable String productId) {
+
+        System.out.println(productId);
+        Products products = this.productService.getProductById(Integer.parseInt(productId));
+
+        if(products == null){
+            return ResponseEntity.notFound().build();
+        }
+
+        Resource image = this.productService.loadImage(products);
+
+        if(image==null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
+                "attachment;name="+image.getFilename()).body(image);
     }
 }

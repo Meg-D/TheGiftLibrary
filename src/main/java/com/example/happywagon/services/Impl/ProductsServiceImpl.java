@@ -9,13 +9,22 @@ import com.example.happywagon.dao.CategoryDao;
 import com.example.happywagon.dao.ProductDao;
 import com.example.happywagon.services.ProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 
+import java.net.MalformedURLException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class ProductsServiceImpl implements ProductsService {
+
+    @Value("${product_image_upload_location}")
+    private String image_location;
 
     @Autowired
     private ProductDao productDao;
@@ -65,5 +74,23 @@ public class ProductsServiceImpl implements ProductsService {
     @Override
     public Products getProductById(int product_id) {
         return productDao.findById(product_id).get();
+    }
+
+
+    @Override
+    public Resource loadImage(Products products) {
+        try {
+            Path upload_location = Paths.get(image_location);
+            Path file = upload_location.resolve(products.getPhoto());
+            Resource resource = new UrlResource(file.toUri());
+            if (resource.exists() || resource.isReadable()) {
+                return resource;
+            } else {
+                return null;
+            }
+        } catch (MalformedURLException error) {
+            System.out.println("Error: [loadImage][ArtistsServiceImpl] " + error.getLocalizedMessage());
+        }
+        return null;
     }
 }

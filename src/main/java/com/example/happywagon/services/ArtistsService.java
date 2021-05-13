@@ -1,12 +1,10 @@
 package com.example.happywagon.services;
 
 import com.example.happywagon.bean.Artists;
-import com.example.happywagon.bean.Register;
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ArtistsService {
     public List<Artists> getArtists();
@@ -23,7 +21,8 @@ public interface ArtistsService {
 
     public Resource loadImage(Artists artists);
 
-    public String registerArtist(Register artist);
+    public String registerArtist(Artists artist);
 
     public String uploadImage(MultipartFile image, Artists artists);
+
 }

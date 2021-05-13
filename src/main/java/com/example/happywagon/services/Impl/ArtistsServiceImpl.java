@@ -1,7 +1,6 @@
 package com.example.happywagon.services.Impl;
 
 import com.example.happywagon.bean.Artists;
-import com.example.happywagon.bean.Register;
 import com.example.happywagon.bean.Users;
 import com.example.happywagon.dao.ArtistDao;
 import com.example.happywagon.dao.UserDao;
@@ -26,7 +25,7 @@ import java.util.List;
 @Service
 public class ArtistsServiceImpl implements ArtistsService {
 
-    @Value("${image_upload_location}")
+    @Value("${artist_image_upload_location}")
     private String image_location;
 
     @Autowired
@@ -76,8 +75,8 @@ public class ArtistsServiceImpl implements ArtistsService {
 
 
     @Override
-    public String registerArtist(Register artist) {
-        System.out.println("in seriveimpl");
+    public String registerArtist(Artists artist) {
+       // System.out.println("in seriveimpl");
         System.out.println(artist);
         String check = artistDao.checkEmail(artist.getEmail());
         if(check != null){
@@ -92,8 +91,6 @@ public class ArtistsServiceImpl implements ArtistsService {
         userDao.save(entity2);
         return "ok";
     }
-
-
 
     @Override
     public Resource loadImage(Artists artists) {
