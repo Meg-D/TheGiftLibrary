@@ -74,11 +74,12 @@ public class ProductsServiceImpl implements ProductsService {
         return productDao.findById(product_id).get();
     }
 
+
     @Override
     public Resource loadImage(Products products) {
         try {
             Path upload_location = Paths.get(image_location);
-            Path file = upload_location.resolve(Products.getPhoto());
+            Path file = upload_location.resolve(products.getPhoto());
             Resource resource = new UrlResource(file.toUri());
             if (resource.exists() || resource.isReadable()) {
                 return resource;

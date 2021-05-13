@@ -1,7 +1,6 @@
 package com.example.happywagon.controller;
 
 import com.example.happywagon.bean.Artists;
-import com.example.happywagon.bean.Register;
 import com.example.happywagon.services.ArtistsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -87,7 +85,7 @@ public class ArtistsController {
                                  @RequestParam String name, @RequestParam String email, @RequestParam String password,
                                  @RequestParam String number, @RequestParam String website){
 
-        Register artists = new Register();
+        Artists artists = new Artists();
         artists.setAbout(about);
         artists.setEmail(email);
         artists.setName(name);

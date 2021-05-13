@@ -1,7 +1,6 @@
 package com.example.happywagon.services.Impl;
 
 import com.example.happywagon.bean.Artists;
-import com.example.happywagon.bean.Register;
 import com.example.happywagon.bean.Users;
 import com.example.happywagon.dao.ArtistDao;
 import com.example.happywagon.dao.UserDao;
@@ -76,7 +75,7 @@ public class ArtistsServiceImpl implements ArtistsService {
 
 
     @Override
-    public String registerArtist(Register artist) {
+    public String registerArtist(Artists artist) {
         System.out.println("in seriveimpl");
         System.out.println(artist);
         String check = artistDao.checkEmail(artist.getEmail());
@@ -87,7 +86,7 @@ public class ArtistsServiceImpl implements ArtistsService {
         Integer id = artistDao.getNextArtistId();
         id++;
 
-        // directly storing to Artists table
+
         Artists entity1 = new Artists(id,artist.getName(),artist.getEmail(),artist.getPassword(),artist.getWebsite(),artist.getNumber(),artist.getAbout(),artist.getPhoto());
         artistDao.save(entity1);
         Users entity2 = new Users(artist.getEmail(),artist.getPassword(),2);
