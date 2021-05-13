@@ -1,10 +1,13 @@
 package com.example.happywagon.controller;
 
+import com.example.happywagon.bean.Artists;
 import com.example.happywagon.bean.Categories;
 import com.example.happywagon.services.CategoriesService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -48,6 +51,24 @@ public class CategoriesController {
     @PutMapping("/categories")
     public Categories updateCategory(@RequestBody Categories category){
         return this.categoryService.updateCategory(category);
+    }
+
+    // Get category images
+    @GetMapping(value = "/category/image/{categoryId}")
+    public ResponseEntity<Resource> getCategoryImage(@PathVariable String categoryId) {
+        System.out.println(categoryId);
+        Categories category = this.categoryService.getCategoryById(Integer.parseInt(categoryId));
+
+        if(category == null){
+            return ResponseEntity.notFound().build();
+        }
+        Resource image = this.categoryService.loadImage(category);
+
+        if(image==null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
+                "attachment;name="+image.getFilename()).body(image);
     }
 
 }

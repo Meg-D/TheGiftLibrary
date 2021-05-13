@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -56,11 +58,11 @@ public class ProductsController {
     }
 
     //add product
-    @PostMapping(path="/products",consumes = "application/JSON")
-    public Products addProduct(@RequestBody Product product){
-        logger.info("adding a new product");
-        return this.productService.addProduct(product);
-    }
+//    @PostMapping(path="/products",consumes = "application/JSON")
+//    public Products addProduct(@RequestBody Product product){
+//        logger.info("adding a new product");
+//        return this.productService.addProduct(product);
+//    }
 
     //delete product
     @DeleteMapping("/products/{productId}")
@@ -92,5 +94,35 @@ public class ProductsController {
         }
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
                 "attachment;name="+image.getFilename()).body(image);
+    }
+
+    // register product
+    @PostMapping(path="/products",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public Products addProduct(@RequestParam MultipartFile file, @RequestParam String artistId,
+                               @RequestParam String categoryId, @RequestParam String description,
+                               @RequestParam String name, @RequestParam String price ){
+
+//        Products product = new Products();
+        Product prod = new Product();
+        prod.setName(name);
+        prod.setPrice(price);
+        prod.setDescription(description);
+        prod.setCate_id(Integer.parseInt(categoryId));
+        prod.setArt_id(Integer.parseInt(artistId));
+
+//        this.productService.addProduct(prod);
+        Products product =  this.productService.addProduct(prod);
+        String file_name = this.productService.uploadImage(file, product);
+
+        if (file_name == null) {
+            return null;
+        }
+
+        product.setPhoto(file_name);
+        this.productService.updateProduct(product);
+
+        logger.info("adding a new product");
+//        return this.productService.addProduct(product);
+        return product;
     }
 }

@@ -13,10 +13,16 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Optional;
 
@@ -90,6 +96,41 @@ public class ProductsServiceImpl implements ProductsService {
             }
         } catch (MalformedURLException error) {
             System.out.println("Error: [loadImage][ArtistsServiceImpl] " + error.getLocalizedMessage());
+        }
+        return null;
+    }
+
+    @Override
+    public void updateProduct(Products product) {
+        productDao.save(product);
+//        return product;
+    }
+
+//    @Override
+//    public String uploadImage(MultipartFile file, Products product) {
+//        return null;
+//    }
+
+    @Override
+    public String uploadImage(MultipartFile image, Products product) {
+        if (image.getOriginalFilename() == null) {
+            return null;
+        }
+        String fileName = StringUtils.cleanPath(image.getOriginalFilename());
+        if (image.isEmpty()) {
+            return null;
+        }
+        if (fileName.contains("..")) {
+            fileName = fileName.replace("..", "_");
+        }
+        try (InputStream inputStream = image.getInputStream()) {
+            Path upload_location = Paths.get(image_location);
+            fileName = fileName + "_" + product.getProduct_id();
+            Files.copy(inputStream, upload_location.resolve(fileName),
+                    StandardCopyOption.REPLACE_EXISTING);
+            return fileName;
+        } catch (IOException error) {
+            System.out.println("Error: [uploadImage][ArtistsServiceImpl] " + error.getLocalizedMessage());
         }
         return null;
     }
