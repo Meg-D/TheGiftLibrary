@@ -50,7 +50,9 @@ public class ProductsServiceImpl implements ProductsService {
     }
 
     @Override
-    public List<Products> getProductsByArtist(int artist_id) {
+    public List<Products> getProductsByArtist(String email) {
+        Artists art =artistDao.getArtistByEmail(email);
+        Integer artist_id = art.getArtist_id();
         Artists artist = artistDao.findById(artist_id).get();
         return productDao.getProductsByArtist(artist);
     }

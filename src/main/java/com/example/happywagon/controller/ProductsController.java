@@ -45,11 +45,11 @@ public class ProductsController {
     }
 
     //get all products by artist
-    @GetMapping("/productsArt/{artist_id}")
-    public List<Products> getProductsByArtist(@PathVariable String artist_id){
+    @GetMapping("/productsArt/{email}")
+    public List<Products> getProductsByArtist(@PathVariable String email){
         // System.out.println("inside controller");
-        logger.info("getting all the products of artist id: "+artist_id);
-        return this.productService.getProductsByArtist(Integer.parseInt(artist_id));
+        logger.info("getting all the products of email: "+email);
+        return this.productService.getProductsByArtist(email);
     }
 
     //add product

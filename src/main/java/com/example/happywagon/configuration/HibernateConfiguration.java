@@ -1,5 +1,6 @@
 package com.example.happywagon.configuration;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -67,5 +68,20 @@ public class HibernateConfiguration {
         transactionManager.setSessionFactory(sessionFactory().getObject());
         return transactionManager;
     }
+//    @Bean
+//    public DataSource dataSource() {
+//        DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
+//        dataSourceBuilder.driverClassName("com.mysql.cj.jdbc.Driver");
+//        String url = System.getenv("DATABASE_HOST");
+//        if(url !=null){
+//            dataSourceBuilder.url("jdbc:mysql://mysql-db-gift:3306/tgl?createDatabaseIfNotExist=true?useSSL=false&allowPublicKeyRetrieval=true&autoReconnect=true&failOverReadOnly=false&maxReconnects=10");
+//        }else{
+//            dataSourceBuilder.url("jdbc:mysql://localhost:3306/tgl?createDatabaseIfNotExist=true");
+//        }
+//        dataSourceBuilder.username("tgl");
+//        dataSourceBuilder.password("passWord@7");
+//        return dataSourceBuilder.build();
+//    }
 }
+//}
 

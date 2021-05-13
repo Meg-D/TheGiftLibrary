@@ -20,7 +20,7 @@ public class UsersController {
     UsersService usersService;
 
     // login
-    @GetMapping(path = "/login")
+    @PostMapping(path="/login")
     public Users login(@RequestBody Users credentials) {
         System.out.println("controller : " + credentials.getUsername() + "  " + credentials.getPassword());
         logger.info("trying to login with credentials as username: "+credentials.getUsername() + " password: "+credentials.getPassword());

@@ -9,7 +9,7 @@ public interface ProductsService {
     public Products addProduct(Product product);
     public void deleteProduct(int product_id);
     public List<Products> getProductsByCategory(int category_id);
-    public List<Products> getProductsByArtist(int artist_id);
+    public List<Products> getProductsByArtist(String email);
     public List<Products> getProducts();
     Products getProductById(int product_id);
 }
