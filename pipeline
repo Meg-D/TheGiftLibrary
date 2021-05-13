@@ -1,0 +1,64 @@
+pipeline{
+    environment{
+        imageName = ""
+        dockerHubReact ="megd30/tgl-react"
+        dockerHubSpring = "megd30/tgl-spring"
+    }
+    agent any
+stages {
+        stage('clone react project'){
+            steps{
+                git 'https://github.com/Sounak-Dey/TGL-React'
+            }
+        }
+        stage('Build react app') {
+            steps {
+                sh 'npm install'
+            }
+        }
+        stage('clone spring project'){
+            steps{
+                git 'https://github.com/Meg-D/TheGiftLibrary'
+            }
+        }
+        stage('build spring app'){
+            steps{
+                script{
+                    sh "mvn clean install"
+                }
+            }
+        }
+        stage('Docker Build Image - tglReact') {
+            steps {
+                script{
+                imageName = docker.build dockerHubReact + ":latest"
+                }
+            }
+        }
+         stage('deploy docker image - tglReact') {
+            steps {
+                script{
+                    docker.withRegistry('','dockerhub'){
+                    imageName.push()
+                    }
+                }
+            }
+        }
+        stage('Docker Build Image - tglSpring') {
+            steps {
+                script{
+                imageName = docker.build dockerHubSpring + ":latest"
+                }
+            }
+        }
+         stage('deploy docker image - tglSpring') {
+            steps {
+                script{
+                    docker.withRegistry('','dockerhub'){
+                    imageName.push()
+                    }
+                }
+            }
+        }
+    }
+}

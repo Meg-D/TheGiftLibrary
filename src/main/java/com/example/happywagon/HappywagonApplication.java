@@ -6,7 +6,18 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.Ordered;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+
+import javax.sql.DataSource;
+import java.util.Arrays;
+import java.util.Collections;
 
 @SpringBootApplication
 public class HappywagonApplication {
@@ -31,6 +42,35 @@ public class HappywagonApplication {
 
     }
 
+//    @Bean
+//    public FilterRegistrationBean<CorsFilter> simpleCorsFilter() {
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        CorsConfiguration config = new CorsConfiguration();
+//        config.setAllowCredentials(true);
+//        config.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+//        config.setAllowedMethods(Collections.singletonList("*"));
+//        config.setAllowedHeaders(Collections.singletonList("*"));
+//        source.registerCorsConfiguration("/**", config);
+//        FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<>(new CorsFilter((CorsConfigurationSource) source));
+//        bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
+//        return bean;
+//    }
+//
+//    @Bean
+//    public DataSource getDataSource() {
+//        DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
+//        dataSourceBuilder.driverClassName("com.mysql.cj.jdbc.Driver");
+//        String url = System.getenv("DATABASE_HOST");
+//        if(url !=null){
+//            dataSourceBuilder.url("jdbc:mysql://mysql-db-gift:3306/tgl?createDatabaseIfNotExist=true?useSSL=false&allowPublicKeyRetrieval=true&autoReconnect=true&failOverReadOnly=false&maxReconnects=10");
+//        }else{
+//            dataSourceBuilder.url("jdbc:mysql://localhost:3306/tgl?createDatabaseIfNotExist=true");
+//        }
+//        dataSourceBuilder.username("tgl");
+//        dataSourceBuilder.password("passWord@7");
+//        return dataSourceBuilder.build();
+//    }
+
     @Bean
     InitializingBean Users(){
         return () -> {
@@ -49,7 +89,7 @@ public class HappywagonApplication {
             artistDao.save(art3);
             artistDao.save(new Artists(4,"Gail Armstrong", "hello@illustration.com" ,"hello", "https://www.illustrationx.com/artists/GailArmstrong" , "+91-65432 12345" , "Gail Armstrong has been creating paper sculptures for over 25 years and her enthusiasm for the medium hasn’t waned one snip","gail.jpeg"));
 
-            Categories cat1 = new Categories(1,"Potraits","drawing from a photograph","sample");
+            Categories cat1 = new Categories(1,"Portraits","drawing from a photograph","sample");
             Categories cat2 = new Categories(2,"Greetings","just a card, but with personalized effects","sample4");
             Categories cat3 = new Categories(3,"Infinity Box","box that will go on opening till it vanishes","sample2");
             categoryDao.save(cat1);

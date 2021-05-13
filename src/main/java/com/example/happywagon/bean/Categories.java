@@ -11,7 +11,7 @@ public class Categories implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer category_id;
-    @Column(nullable = false,unique = false)
+    @Column(nullable = false)
     private String name;
     private String about;
     private String photo;
