@@ -42,34 +42,34 @@ public class HappywagonApplication {
 
     }
 
-//    @Bean
-//    public FilterRegistrationBean<CorsFilter> simpleCorsFilter() {
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        CorsConfiguration config = new CorsConfiguration();
-//        config.setAllowCredentials(true);
-//        config.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
-//        config.setAllowedMethods(Collections.singletonList("*"));
-//        config.setAllowedHeaders(Collections.singletonList("*"));
-//        source.registerCorsConfiguration("/**", config);
-//        FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<>(new CorsFilter((CorsConfigurationSource) source));
-//        bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
-//        return bean;
-//    }
-//
-//    @Bean
-//    public DataSource getDataSource() {
-//        DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
-//        dataSourceBuilder.driverClassName("com.mysql.cj.jdbc.Driver");
-//        String url = System.getenv("DATABASE_HOST");
-//        if(url !=null){
-//            dataSourceBuilder.url("jdbc:mysql://mysql-db-gift:3306/tgl?createDatabaseIfNotExist=true?useSSL=false&allowPublicKeyRetrieval=true&autoReconnect=true&failOverReadOnly=false&maxReconnects=10");
-//        }else{
-//            dataSourceBuilder.url("jdbc:mysql://localhost:3306/tgl?createDatabaseIfNotExist=true");
-//        }
-//        dataSourceBuilder.username("tgl");
-//        dataSourceBuilder.password("passWord@7");
-//        return dataSourceBuilder.build();
-//    }
+    @Bean
+    public FilterRegistrationBean<CorsFilter> simpleCorsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+       // config.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+        config.setAllowedMethods(Collections.singletonList("*"));
+        config.setAllowedHeaders(Collections.singletonList("*"));
+        source.registerCorsConfiguration("/**", config);
+        FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<>(new CorsFilter((CorsConfigurationSource) source));
+        bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
+        return bean;
+    }
+
+    @Bean
+    public DataSource getDataSource() {
+        DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
+        dataSourceBuilder.driverClassName("com.mysql.cj.jdbc.Driver");
+        String url = System.getenv("DATABASE_HOST");
+        if(url !=null){
+            dataSourceBuilder.url("jdbc:mysql://mysql-db-tgl:3306/tgl?createDatabaseIfNotExist=true?useSSL=false&allowPublicKeyRetrieval=true&autoReconnect=true&failOverReadOnly=false&maxReconnects=10");
+        }else{
+            dataSourceBuilder.url("jdbc:mysql://localhost:3306/tgl?createDatabaseIfNotExist=true");
+        }
+        dataSourceBuilder.username("tgl");
+        dataSourceBuilder.password("passWord@7");
+        return dataSourceBuilder.build();
+    }
 
     @Bean
     InitializingBean Users(){
