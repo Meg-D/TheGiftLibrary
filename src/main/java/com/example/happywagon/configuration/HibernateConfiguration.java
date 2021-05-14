@@ -1,4 +1,5 @@
 package com.example.happywagon.configuration;
+import com.example.happywagon.dataSource.datasource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
@@ -14,17 +15,17 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 public class HibernateConfiguration {
-    @Value("${db.driver}")
-    private String DRIVER;
-
-    @Value("${db.password}")
-    private String PASSWORD;
-
-    @Value("${db.url}")
-    private String URL;
-
-    @Value("${db.username}")
-    private String USERNAME;
+//    @Value("${db.driver}")
+//    private String DRIVER;
+//
+//    @Value("${db.password}")
+//    private String PASSWORD;
+//
+//    @Value("${db.url}")
+//    private String URL;
+//
+//    @Value("${db.username}")
+//    private String USERNAME;
 
     @Value("${hibernate.dialect}")
     private String DIALECT;
@@ -38,20 +39,21 @@ public class HibernateConfiguration {
     @Value("${entitymanager.packagesToScan}")
     private String PACKAGES_TO_SCAN;
 
-    @Bean
-    public DataSource dataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(DRIVER);
-        dataSource.setUrl(URL);
-        dataSource.setUsername(USERNAME);
-        dataSource.setPassword(PASSWORD);
-        return dataSource;
-    }
+    datasource data = new datasource();
+//    @Bean
+//    public DataSource dataSource() {
+//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//        dataSource.setDriverClassName(DRIVER);
+//        dataSource.setUrl(URL);
+//        dataSource.setUsername(USERNAME);
+//        dataSource.setPassword(PASSWORD);
+//        return dataSource;
+//    }
 
     @Bean(name="entityManagerFactory")
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-        sessionFactory.setDataSource(dataSource());
+        sessionFactory.setDataSource(data.getdataSource());
         sessionFactory.setPackagesToScan(PACKAGES_TO_SCAN);
         Properties hibernateProperties = new Properties();
         hibernateProperties.put("hibernate.dialect", DIALECT);
@@ -68,20 +70,7 @@ public class HibernateConfiguration {
         transactionManager.setSessionFactory(sessionFactory().getObject());
         return transactionManager;
     }
-//    @Bean
-//    public DataSource dataSource() {
-//        DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
-//        dataSourceBuilder.driverClassName("com.mysql.cj.jdbc.Driver");
-//        String url = System.getenv("DATABASE_HOST");
-//        if(url !=null){
-//            dataSourceBuilder.url("jdbc:mysql://mysql-db-gift:3306/tgl?createDatabaseIfNotExist=true?useSSL=false&allowPublicKeyRetrieval=true&autoReconnect=true&failOverReadOnly=false&maxReconnects=10");
-//        }else{
-//            dataSourceBuilder.url("jdbc:mysql://localhost:3306/tgl?createDatabaseIfNotExist=true");
-//        }
-//        dataSourceBuilder.username("tgl");
-//        dataSourceBuilder.password("passWord@7");
-//        return dataSourceBuilder.build();
-//    }
+
 }
 //}
 
