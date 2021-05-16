@@ -11,23 +11,6 @@ stages {
                 git 'https://github.com/Sounak-Dey/TGL-React'
             }
         }
-        stage('Build react app') {
-            steps {
-                sh 'npm install'
-            }
-        }
-        stage('clone spring project'){
-            steps{
-                git 'https://github.com/Meg-D/TheGiftLibrary'
-            }
-        }
-        stage('build spring app'){
-            steps{
-                script{
-                    sh "mvn clean install"
-                }
-            }
-        }
         stage('Docker Build Image - tglReact') {
             steps {
                 script{
@@ -44,6 +27,18 @@ stages {
                 }
             }
         }
+        stage('clone spring project'){
+            steps{
+                git 'https://github.com/Meg-D/TheGiftLibrary'
+            }
+        }
+        stage('build spring app'){
+            steps{
+                script{
+                    sh "mvn clean install"
+                }
+            }
+        }
         stage('Docker Build Image - tglSpring') {
             steps {
                 script{
@@ -57,6 +52,13 @@ stages {
                     docker.withRegistry('','dockerhub'){
                     imageName.push()
                     }
+                }
+            }
+        }
+        stage('Execute Rundeck job'){
+            steps{
+                script{
+                    build 'tgl-Rundeck'
                 }
             }
         }
