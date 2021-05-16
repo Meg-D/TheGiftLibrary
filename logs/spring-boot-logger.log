@@ -1,0 +1,7 @@
+2021-05-14 19:16:49,645 INFO com.example.happywagon.controller.CategoriesController [http-nio-8085-exec-1] getting all the categories
+2021-05-14 19:16:52,936 INFO com.example.happywagon.controller.ProductsController [http-nio-8085-exec-10] getting all the products
+2021-05-14 19:16:56,360 INFO com.example.happywagon.controller.ArtistsController [http-nio-8085-exec-5] getting all the artists
+2021-05-14 19:18:04,039 INFO com.example.happywagon.controller.ArtistsController [http-nio-8085-exec-4] getting all the artists
+2021-05-14 19:18:15,073 INFO com.example.happywagon.controller.CategoriesRequestsController [http-nio-8085-exec-3] getting all the category requests
+2021-05-14 19:18:18,280 INFO com.example.happywagon.controller.ProductsController [http-nio-8085-exec-1] getting all the products
+2021-05-14 19:18:23,696 INFO com.example.happywagon.controller.CategoriesController [http-nio-8085-exec-6] getting all the categories
